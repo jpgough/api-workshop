@@ -9,8 +9,8 @@ In an ideal world we would begin with the tests before writing the API code.
 
 Before we start it's important to scope what should have been done in lab 1 (in an ideal solution/world).
 
-* Tasks should have been created as a service and unit tested for accuracy
-* The Controller should have included tasks, and the behaviour we want to now test is the accuracy of the API.
+* A `Todo` service should have been created and unit tested for accuracy
+* The Controller should have included `Todo`, and the behaviour we want to now test is the accuracy of the API.
 * For contract tests we can (and normally would) completely mock out the service, 
 given the simplicity of our service we will use the real thing. 
 

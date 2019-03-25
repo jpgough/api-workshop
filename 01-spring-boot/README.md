@@ -12,7 +12,7 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 
 * Visit [https://start.spring.io](https://start.spring.io) to create a new project
 * Choose a gradle project for the lab
-* We will use Java today and the latest version of Spring Boot
+* We will use Java and the latest version of Spring Boot
 * Create some project metadata that makes sense
 * Add in the required dependencies, to get us started we will add
    * Cloud Contract Verifier (which we will use in Lab 2)
@@ -20,7 +20,7 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 
 ![Spring Initializr](01A-initializr-config.png)
 
-Generating the project will download the dependencies and working Spring Application. 
+Generating the project will download the dependencies and structure of a working Spring Application. 
 
 ### Step 2 - Importing the Project
 
@@ -57,7 +57,7 @@ public class WorkshopController {
 }
 ```
 
-We can now start our project by running `ApiworkshopApplication.java` (which contains the main method). 
+We can now start our project by running `ApiworkshopApplication.java` (or the class which contains the main method). 
 In a couple of seconds you should be able to visit [http://localhost:8080/hello](http://localhost:8080/hello)
 
 ![Hello World](01C-hello-world.png)

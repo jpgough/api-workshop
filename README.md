@@ -1,23 +1,22 @@
 # API Workshop
 
-In this workshop we will explore building APIs using Spring Boot and will see that building 
-APIs is incredibly easy. 
+In this workshop we will explore building APIs using Spring Boot.
+Building APIs using Spring and other tooling can be done by clicking a couple of buttons.  
 However as with any process (regardless of speed) we want to ensure quality in the product we are building.
-The workshop is a mixture of hands on exercises and taught mini sessions to introduce the concepts.
+The workshop is a mixture of hands on exercises and taught mini sessions to introduce the concepts behind building quality APIs.
 
 ## Prerequisites 
 
 * IDE installed (Intellij/Eclipse) 
 * Access to the internet 
-* Gradle configured and working with chosen IDE
+* Gradle configured and working with chosen IDE, most of the lab instructions show IntelliJ steps
 
-You may also wish to install in preparation the following utilities
+You may also wish to install the following utilities in preparation
 
 * Swagger Codegen, more instructions in the [OpenAPI Lab](/03-open-api) 
 * Swagger Validate, more instructions in the [Versioning Lab](/04-versioning)
 
 ## Sessions
-
 
 | Theme                         | Taught Material |  Lab Work                                    |
 |-------------------------------|-----------------|--------------------------------------------- |
