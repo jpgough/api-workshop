@@ -1,4 +1,4 @@
-# Lab 1
+# Lab 1 Spring Boot
 
 We are going to create a project using Spring Boot. Take a moment to think about how you have created projects in the past....
 
@@ -16,7 +16,7 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 * Create some project metadata that makes sense
 * Add in the required dependencies, to get us started we will add
    * Cloud Contract Verifier (which we will use in Lab 2)
-   * HATEOAS support (which we will talk about)
+   * The Web dependency, which is required for tomcat to be embedded
 
 ![Spring Initializr](01A-initializr-config.png)
 

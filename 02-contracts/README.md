@@ -1,8 +1,9 @@
-# Lab 2
+# Lab 2 Contracts
 
 In lab 1 we created an API for tracking a todo list. 
 One thing you may have felt whilst writing the code was the requirement to do manual testing.
 In this lab we will explore writing Contract Driven Tests for our todo list application.
+In an ideal world we would begin with the tests before writing the API code. 
 
 #### Lab 1 Recap
 
@@ -184,3 +185,5 @@ The scenarios we can now test include
 * Getting tasks includes task 1
 * Retrieval of task 1 succeeds with the description and a 200
 * Task 1 can be removed successfully 
+
+It is also possible to have multiple tests executed together in scenarios using Spring Cloud Contract. 
