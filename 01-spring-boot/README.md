@@ -64,7 +64,7 @@ In a couple of seconds you should be able to visit [http://localhost:8080/hello]
 
 ### Step 4 - Building a (slightly) more advanced API
 
-We will create a very simple TODO list application.
+We will create a very simple todo list application.
 The application doesn't need to persist any data, though if you wanted to continue this exercise afterwards that is one exetension point.
 
 Here are the operations that we will look to implement:
