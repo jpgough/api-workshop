@@ -11,6 +11,11 @@ The workshop is a mixture of hands on exercises and taught mini sessions to intr
 * Access to the internet 
 * Gradle configured and working with chosen IDE
 
+You may also wish to install
+
+* Swagger Codegen, more instructions in the [OpenAPI Lab](/03-open-api) 
+* Swagger Validate, more instructions in the [Versioning Lab](/04-versioning)
+
 ## Sessions
 
 
