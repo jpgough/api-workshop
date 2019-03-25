@@ -19,10 +19,10 @@ compile("io.springfox:springfox-swagger-ui:2.9.2")
 
 ```
 
-> Note the need to baseline the `spring-plugin-core` this is due to Spring upgrading and will SpringFox being slightly behind.
+> Note the need to baseline the `spring-plugin-core` this is due to Spring upgrading and SpringFox being slightly behind.
 This should be resolved in the next release. 
 
-The final step is to annotate the `Application.java` class to have the `@EnableSwagger2` annotation on. 
+The final step is to annotate the `Application.java` class to have the `@EnableSwagger2` annotation. 
 
 ```java
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -46,6 +46,8 @@ The first represents the swagger specification of our application.
 The second represents the Swagger UI, which we can now use to invoke and explore our API. 
 Note how we have every method on `/hello` as we didn't specify the request method before. 
 
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
 ![Swagger UI](03B-swagger.png)
 
 The `basic-error-controller` is some noise from Spring and we can reduce that noise by adding the following configuration bean.
@@ -65,7 +67,7 @@ public Docket api() {
 ```
 
 This bean can be added to a separate Spring Configuration class or into the `Application.java` file with an `@Configuration` annotation.
-If we also specify `/hello` as a get we will see our specification looks a lot tidier. 
+If we also specify `/hello` as a `GET` we will see our specification looks a lot tidier. 
 
 ![Tidy Swagger UI](03C-tidy-swagger.png)
 
@@ -85,13 +87,14 @@ Experiment with those two annotations and see if you can produce a page that loo
 The advantage of having the swagger specification available is generating client code to call our API is now quite easy.
 [http://localhost:8080/v2/api-docs](http://localhost:8080/v2/api-docs) represents our current API specification.
  
-First, get hold of [Swagger Codegen](https://github.com/swagger-api/swagger-codegen)
+First, download [Swagger Codegen](https://github.com/swagger-api/swagger-codegen)
 
 ```
 wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O swagger-codegen-cli.jar   
 java -jar swagger-codegen-cli.jar help
 ```
-On a mac you can also run `brew install swagger-codegen`
+On a mac you can also run `brew install swagger-codegen`. 
+After you have downloaded `swagger-codegen` run the following command against your API specification. 
 
 ```
 java -jar swagger-codegen-cli.jar generate \
@@ -103,7 +106,7 @@ java -jar swagger-codegen-cli.jar generate \
 This will generate a Java client that you can now experiment with calling your API.
 
 There are many generators that are available, though you have to be careful that if you use one you do check the code generated.
-This kind of generation has the possibility to inject malicious code. 
+Code generation has the potential to inject malicious code if it is not from a trusted source. 
 The are also some generators that build nicer Spring Boot projects [here](https://www.baeldung.com/spring-boot-rest-client-swagger-codegen).
 
-Build a small Java command line app that operates with your Task API. 
+Build a small Java command line app that operates with your Todo API. 

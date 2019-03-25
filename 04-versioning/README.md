@@ -1,7 +1,7 @@
 #Lab 4 Versioning
 
-In Lab 3 we explored PAI specifications and generating code against those specifications. 
-Unlike when we use a binary dependency there is the opportunity for APIs to evolve in a highly decoupled way.
+In Lab 3 we explored API specifications and generating code against those specifications. 
+Unlike when we use a binary dependency there is the opportunity for APIs to evolve in a decoupled way.
 The issue with this is the possibility of software dependencies unexpectedly breaking. 
 
 Versioning can help us to prevent issues, in this lab we will explore how changes to our API either retain or break backwards compatibility.
@@ -11,7 +11,7 @@ Versioning can help us to prevent issues, in this lab we will explore how change
 Create a copy of the API specification as it stands at the moment `curl http://localhost:8080/v2/api-docs -o v1.0.json`
 
 Make a small refactor to the API and add a field representing the todo owner. 
-This can simply be added into the Java object as an additional field.
+This can simply be added into the Java object as an additional optional field.
 
 Restart the application and capture the specification again `curl http://localhost:8080/v2/api-docs -o v1.1.json`
 
