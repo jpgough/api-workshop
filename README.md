@@ -18,13 +18,13 @@ You may also wish to install the following utilities in preparation
 
 ## Sessions
 
-| Theme                         | Taught Material |  Lab Work                                    |
-|-------------------------------|-----------------|--------------------------------------------- |
-| Building an API               | Coming Soon     | [Spring Boot](/01-spring-boot/README.md)     |
-| Contract Driven Development   | Coming Soon     | [Contract Driven Development](/02-contracts) |
-| Open API Specifications       | Coming Soon     | [OpenAPI](/03-open-api)                      | 
-| Versioning                    | Coming Soon     | [Versioning](/04-versioning)                 | 
-| Deployment                    | Coming Soon     | Coming Soon                                  |
+| Theme                         | Taught Material                                          |  Lab Work                                    |
+|-------------------------------|----------------------------------------------------------|--------------------------------------------- |
+| Building an API               | [Spring Boot](/presentations/01-spring-boot.pdf)         | [Spring Boot](/01-spring-boot/README.md)     |
+| Contract Driven Development   | [Spring Cloud Contract](/presentations/02-contracts.pdf) | [Contract Driven Development](/02-contracts) |
+| Open API Specifications       | [Open API](/presentations/03-open-api.pdf)               | [OpenAPI](/03-open-api)                      | 
+| Versioning                    | [Versioning](/presentatinos/04-versioning.pdf)           | [Versioning](/04-versioning)                 | 
+| Deployment                    | Coming Soon     | Coming Soon                            |
 
 ## Sample Solutions
 
