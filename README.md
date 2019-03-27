@@ -15,6 +15,7 @@ You may also wish to install the following utilities in preparation
 
 * Swagger Codegen, more instructions in the [OpenAPI Lab](/03-open-api) 
 * Swagger Validate, more instructions in the [Versioning Lab](/04-versioning)
+* A mechanism of making RESTful requests e.g. [Restlet for Chrome](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en).
 
 ## Sessions
 
