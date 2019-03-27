@@ -24,13 +24,27 @@ Generating the project will download the dependencies and structure of a working
 
 ### Step 2 - Importing the Project
 
+#### Intellij
+
 Import the project into your IDE by opening the the `build.gradle` file as a project.
 
-![Project Import](01B-sample-import.png)
+![Intellij Project Import](01B-sample-import.png)
 
 On hitting OK the project will most likely download the internet (or at least all the required dependencies). 
 Once this has completed your baseline project is ready. 
 You can try running the tests to verify that your project builds and the context loads correctly.
+
+#### Eclipse
+
+File `->` Import `->` Gradle `->` Existing Gradle Project.    
+Follow the wizard to bring in the project and resolve the dependencies.
+ 
+
+![Eclipse Project Import](01B2-eclipse.png)
+
+Eclipse does not bring in JUnit by default, so you will need to add this.   
+Right click on the project `->` Build Path `->` Configure Build Path   
+Libraries `->` Add Library `->` JUnit 5 
 
 ### Step 3 - Creating our First Controller
 
