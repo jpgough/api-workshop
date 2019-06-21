@@ -16,7 +16,7 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 * Create some project metadata that makes sense
 * Add in the required dependencies, to get us started we will add
    * Cloud Contract Verifier (which we will use in Lab 2)
-   * The Web dependency, which is required for tomcat to be embedded
+   * The Spring Web Starter dependency, which is required for tomcat to be embedded
 
 ![Spring Initializr](01A-initializr-config.png)
 
