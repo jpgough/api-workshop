@@ -25,12 +25,7 @@ You may also wish to install the following utilities in preparation
 | Contract Driven Development   | [Spring Cloud Contract](/presentations/02-contracts.pdf) | Coming Soon              | [Contract Driven Development](/02-contracts/README.md) |
 | Open API Specifications       | [Open API](/presentations/03-open-api.pdf)               | Coming Soon              | [Open API](/03-open-api/README.md)                     | 
 | Versioning                    | [Versioning](/presentatinos/04-versioning.pdf)           | Coming Soon              | [Versioning](/04-versioning/README.md)                 | 
-| Creating a Docker Container   | Coming Soon                                              | Coming Soon              | Coming Soon                                            |
-| Deploying to Kubernetes       | Coming Soon                                              | Coming Soon              | Coming Soon                                            |
-| Introducing an API Gateway    | Coming Soon                                              | Coming Soon              | Coming Soon                                            |
-| Traffic Management            | Coming Soon                                              | Coming Soon              | Coming Soon                                            |
-| Introduction to DevOps        | Coming Soon                                              | Coming Soon              | Coming Soon                                            |
-| Chaos Engineering             | Coming Soon                                              | Coming Soon              | Coming Soon                                            |
+
 
 ## Sample Solutions
 
