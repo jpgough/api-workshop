@@ -29,7 +29,8 @@ You may also wish to install the following utilities in preparation
 
 ## Introduction Sessions
 
-| Theme                         | Introduction Talk                                     |  Demo        | 
+| Theme                         | Introduction Talk                                     |  Demo        |
+| ----------------------------- | ----------------------------------------------------- | ------------ |
 | API Gateways                  | Coming Soon                                           | Coming Soon  |
 | Service Mesh                  | Coming Soon                                           | Coming Soon  |
 
