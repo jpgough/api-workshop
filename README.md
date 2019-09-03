@@ -1,7 +1,8 @@
 # API Workshop
 
 In this workshop we will explore building APIs using Spring Boot.
-Building APIs using Spring and other tooling can be done by clicking a couple of buttons.  
+Building APIs using Spring and other tooling can be done by clicking a couple of buttons. 
+
 However as with any process (regardless of speed) we want to ensure quality in the product we are building.
 The workshop is a mixture of hands on exercises and taught mini sessions to introduce the concepts behind building quality APIs.
 
@@ -19,7 +20,7 @@ You may also wish to install the following utilities in preparation
 
 ## Sessions
 
-| Theme                         | Theme Lightning Talk                                     |  Self Teaching Blog Post | Lab Work                                               |
+| Theme                         | Introduction Talk                                     |  Self Teaching Blog Post | Lab Work                                               |
 |-------------------------------|----------------------------------------------------------|--------------------------|------------------------------------------------------- |
 | Building an API               | [Spring Boot](/presentations/01-spring-boot.pdf)         | Coming Soon              | [Spring Boot](/01-spring-boot/README.md)               |
 | Contract Driven Development   | [Spring Cloud Contract](/presentations/02-contracts.pdf) | Coming Soon              | [Contract Driven Development](/02-contracts/README.md) |
