@@ -18,7 +18,7 @@ You may also wish to install the following utilities in preparation
 * Swagger Validate, more instructions in the [Versioning Lab](/04-versioning)
 * A mechanism of making RESTful requests e.g. [Restlet for Chrome](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en).
 
-## Sessions
+## Hands on Sessions
 
 | Theme                         | Introduction Talk                                     |  Self Teaching Blog Post | Lab Work                                               |
 |-------------------------------|----------------------------------------------------------|--------------------------|------------------------------------------------------- |
@@ -27,6 +27,11 @@ You may also wish to install the following utilities in preparation
 | Open API Specifications       | [Open API](/presentations/03-open-api.pdf)               | Coming Soon              | [Open API](/03-open-api/README.md)                     | 
 | Versioning                    | [Versioning](/presentatinos/04-versioning.pdf)           | Coming Soon              | [Versioning](/04-versioning/README.md)                 | 
 
+## Introduction Sessions
+
+| Theme                         | Introduction Talk                                     |  Demo        | 
+| API Gateways                  | Coming Soon                                           | Coming Soon  |
+| Service Mesh                  | Coming Soon                                           | Coming Soon  |
 
 ## Sample Solutions
 
