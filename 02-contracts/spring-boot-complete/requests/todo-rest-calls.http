@@ -1,0 +1,29 @@
+POST http://localhost:8080/todos
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"message":"Make the bed"}
+
+###
+
+GET http://localhost:8080/todos
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-09-04T121115.200.json
+
+
+###
+
+GET http://localhost:8080/todos/1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"message":"Make the bed"}
+
+<> 2019-09-04T121120.200.json
+
+###
+
