@@ -103,18 +103,18 @@ There are two options for building locally:
 1. run `gradle build` from the IDE
 
 The following jar file should now be created: `build/libs/apiworkshop-0.0.1-SNAPSHOT.jar`
-You can run this jar using `java -jar build/libs/apiworkshop-0.0.1-SNAPSHOT.jar` the Spring gradle plugin will have packaged 
+You can run this jar using `java -jar build/libs/apiworkshop-0.0.1-SNAPSHOT.jar` the Spring Boot gradle plugin will have packaged 
 everything for you to run your REST API. 
+The application will now be running and testable on http://localhost:8080/hello.
 
 The following `Dockerfile` can now be created in the root of the project.
 
 ```
-FROM openjdk:11
-VOLUME /tmp
-ADD build/libs/apiworkshop-0.0.1-SNAPSHOT.jar app.jar
+FROM adoptopenjdk:12-jre-hotspot
+RUN mkdir /opt/app
+ADD build/libs/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
 EXPOSE 8080
-ENV JAVA_OPTS=""
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
+ENTRYPOINT [ "java", "-jar", "/opt/app/app.jar" ]
 ```
 
 The docker image can now be built with the following command:
