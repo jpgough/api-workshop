@@ -16,7 +16,7 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 * Create some project metadata that makes sense
 * Add in the required dependencies, to get us started we will add
    * Cloud Contract Verifier (which we will use in Lab 2)
-   * The Spring Web Starter dependency, which is required for tomcat to be embedded
+   * The Spring Web dependency, which is required for tomcat to be embedded
 
 ![Spring Initializr](01A-initializr-config.png)
 
@@ -41,10 +41,6 @@ Follow the wizard to bring in the project and resolve the dependencies.
  
 
 ![Eclipse Project Import](01B2-eclipse.png)
-
-Eclipse does not bring in JUnit by default, so you will need to add this.   
-Right click on the project `->` Build Path `->` Configure Build Path   
-Libraries `->` Add Library `->` JUnit 5 
 
 ### Step 3 - Creating our First Controller
 
@@ -83,10 +79,10 @@ The application doesn't need to persist any data, though if you wanted to contin
 
 Here are the operations that we will look to implement:
 
-* `GET /todo` Returns a list of todo items, initially the list will be empty
-* `POST /todo/item/1` Creates a todo item with the ID 1
-* `GET /todo/item/1` Returns the todo item with the ID 1
-* `DELETE /todo/item/1` Remove the todo item 1
+* `GET /todos` Returns a list of todo items, initially the list will be empty
+* `POST /todos/1` Creates a todo item with the ID 1
+* `GET /todos/1` Returns the todo item with the ID 1
+* `DELETE /todos/1` Remove the todo item 1
 
 #### Design considerations
 
@@ -97,3 +93,53 @@ This will allow you to test independently.
 
 You can test your API from your IDE or install a free tool like [Restlet](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en) 
 into your browser. 
+
+### Step 5 - Deploying with Docker
+
+In order to build a docker container we first need to test running the application as a jar locally. 
+There are two options for building locally:
+
+1. run `gradle build` from the command line (requires gradle to be installed)
+1. run `gradle build` from the IDE
+
+The following jar file should now be created: `build/libs/apiworkshop-0.0.1-SNAPSHOT.jar`
+You can run this jar using `java -jar build/libs/apiworkshop-0.0.1-SNAPSHOT.jar` the Spring gradle plugin will have packaged 
+everything for you to run your REST API. 
+
+The following `Dockerfile` can now be created in the root of the project.
+
+```
+FROM openjdk:11
+VOLUME /tmp
+ADD build/libs/apiworkshop-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENV JAVA_OPTS=""
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
+```
+
+The docker image can now be built with the following command:
+
+`docker build -t apiworkshop:v1 .`
+
+Once the build is created our image will be visible by running `docker images`.
+
+```
+$ docker images
+REPOSITORY                                                TAG                 IMAGE ID            CREATED             SIZE
+apiworkshop                                               v1                  38a02d5fb614        5 minutes ago       622MB
+```
+
+We can now run our image using the following docker command
+
+`docker run -p 8081:8080 -t apiworkshop:v1`
+
+Note the -p command sets up the port mapping. http://localhost:8081/hello - will now be the docker hosted application. 
+We can view our running docker containers using the command `docker ps`
+
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                    NAMES
+46c5781e269f        apiworkshop:v1      "sh -c 'java $JAVA_O…"   About a minute ago   Up About a minute   0.0.0.0:8081->8080/tcp   peaceful_stonebraker
+```
+
+If you need to restart/stop the container run `docker kill <container ID>`.
