@@ -1,0 +1,58 @@
+{
+    "provider": {
+        "name": "todo-api-producer-pact"
+    },
+    "consumer": {
+        "name": "todo-api-consumer-pact"
+    },
+    "interactions": [
+        {
+            "description": "a request to update the todo",
+            "request": {
+                "method": "PUT",
+                "path": "/todos/1",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "message": "Make all the beds"
+                },
+                "matchingRules": {
+                    "path": {
+                        "": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "/todos/1"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    },
+                    "header": {
+                        
+                    },
+                    "body": {
+                        
+                    }
+                }
+            },
+            "response": {
+                "status": 204
+            },
+            "providerStates": [
+                {
+                    "name": "an todo of id 1 has already been created"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.13"
+        }
+    }
+}
