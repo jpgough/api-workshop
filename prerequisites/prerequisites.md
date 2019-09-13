@@ -26,6 +26,14 @@ The next stage is to install an IDE
    * Select the Ultimate or Community Edition and download. Ultimate has a 30 day trial which is nice to use if you have a free trial available. Community Edition is missing a few features from Ultimate but none that matter for this workshop and is completely free
       * Windows - Run the downloaded EXE file
       * Mac - Run the downloaded PKG file
+   * Configure the SDK
+      * Open intelliJ and select File -> Project Structure
+      * Notice the **No SDK** which can be seen in the image
+      ![Setup the SDK](images/no_sdk.png)
+      * Select New -> JDK
+      * Navigate to your installed Java SDK
+         * Windows - c:\ProgramFiles\AdoptOpenJDK\\***version-downloaded***/Contents/Home
+         * Mac - /Library/Java/JavaVirtualMachines/***version-downloaded***/Contents/Home
 
 ### Eclipse
    * Visit https://www.eclipse.org/downloads/packages/
