@@ -8,15 +8,11 @@ The workshop is a mixture of hands on exercises and taught mini sessions to intr
 
 ## Prerequisites 
 
+There are some steps that should be followed before attending the workshop which include
 * IDE installed (Intellij/Eclipse) 
-* Access to the internet 
-* Gradle configured and working with chosen IDE, most of the lab instructions show IntelliJ steps
+* Docker setup
 
-You may also wish to install the following utilities in preparation
-
-* Swagger Codegen, more instructions in the [OpenAPI Lab](/03-open-api) 
-* Swagger Validate, more instructions in the [Versioning Lab](/04-versioning)
-* A mechanism of making RESTful requests e.g. [Restlet for Chrome](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en).
+Please visit the [prerequisite](prerequisite/README.md) page to perform these steps
 
 ## Hands on Sessions
 

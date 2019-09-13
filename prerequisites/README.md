@@ -64,4 +64,19 @@ As part of the workshop we will require the downloading of some docker images. T
    ```docker
    docker pull postgres:latest
    docker pull dius/pact-broker:latest
+   docker pull quen2404/openapi-diff
    ```
+
+# Recommended prerequisite.
+We recommend installing the following software ahead of the workshop, though they are small so it is not essential
+
+## Swagger diff
+
+   * Download the following jar file: wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O swagger-codegen-cli.jar
+   * Make a note of where you have installed it as it will be used in the workshop
+
+## A REST client
+We will be making requests to the services we build so it is really useful to have a rest client. Please use any of the suggested options:
+   * intelliJ there is one available in Tools -> HTTP Client -> Test RESTful Web Service
+   * For Windows or Mac [POSTman](https://www.getpostman.com/downloads/)
+   * For chrome [restlet client](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en)
