@@ -12,7 +12,7 @@ There are some steps that should be followed before attending the workshop which
 * IDE installed (Intellij/Eclipse) 
 * Docker setup
 
-Please visit the [prerequisite](prerequisite/README.md) page to perform these steps
+Please visit the [prerequisite](prerequisites/README.md) page to perform these steps
 
 ## Hands on Sessions
 
