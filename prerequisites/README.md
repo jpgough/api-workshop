@@ -72,7 +72,7 @@ We recommend installing the following software ahead of the workshop, though the
 
 ## Swagger diff
 
-   * Download the following jar file: wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O swagger-codegen-cli.jar
+   * Download the following jar file: `wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O swagger-codegen-cli.jar`
    * Make a note of where you have installed it as it will be used in the workshop
 
 ## A REST client
