@@ -64,6 +64,8 @@ As part of the workshop we will require the downloading of some docker images. T
    ```docker
    docker pull postgres:latest
    docker pull dius/pact-broker:latest
+   docker pull jpgough/api-workshop-gateway
+   docker pull gradle:jdk12
    ```
 
 # Recommended prerequisite.
