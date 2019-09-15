@@ -64,7 +64,6 @@ As part of the workshop we will require the downloading of some docker images. T
    ```docker
    docker pull postgres:latest
    docker pull dius/pact-broker:latest
-   docker pull quen2404/openapi-diff
    ```
 
 # Recommended prerequisite.
