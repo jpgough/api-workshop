@@ -143,3 +143,42 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 If you need to restart/stop the container run `docker kill <container ID>`.
+
+### Step 6 (Optional) - Building with Docker
+
+One limitation with our above solution is that we have to remember to build both with gradle and then with docker. 
+This is both easy to forget and makes creating a build pipeline that bit more complex.
+
+There is a solution, and that is that we modify the `Dockerfile` to both build the java code and create the runnable image. 
+
+```
+FROM gradle:jdk12 as builder
+
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build
+```
+If we add the above to the beggining of our existing Dockerfile it will have the effect of creating a _Multistage build_ that is we will use the result of one stage in the stage that packages up the jar for running. 
+There is a nice blog walking through these steps [here](http://paulbakker.io/java/docker-gradle-multistage/) along with an article that provides a decent overview of [best practices](https://blog.docker.com/2019/07/intro-guide-to-dockerfile-best-practices/).
+The above will now pull in gradle and build our project into the `/home/gradle/src`.
+
+We now have to include the output from the gradle build into our packaging stage of the java image.
+We can replace the `ADD` command with a `COPY` to move the jar from the gradle build area into our image.
+The complete Dockerfile would look like this.
+
+```
+FROM gradle:jdk12 as builder
+
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build
+
+FROM adoptopenjdk:12-jre-hotspot
+RUN mkdir /opt/app
+COPY --from=builder /home/gradle/src/build/libs/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
+EXPOSE 8080
+ENTRYPOINT [ "java", "-jar", "/opt/app/app.jar" ]
+```
+We can now run the image as we did in step 5, only this time when we run `docker build` it will both build the jar and create the runnable docker image. 
+There are also no magic environment variables or steps requiring a specific setup on a machine.
+Containerizing builds provides a reproducible way of creating a docker image. 
