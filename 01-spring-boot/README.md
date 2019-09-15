@@ -158,7 +158,7 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build
 ```
-If we add the above to the beggining of our existing Dockerfile it will have the effect of creating a _Multistage build_ that is we will use the result of one stage in the stage that packages up the jar for running. 
+If we add the above to the beginning of our existing Dockerfile it will have the effect of creating a _Multistage build_ that is we will use the result of one stage in the stage that packages up the jar for running. 
 There is a nice blog walking through these steps [here](http://paulbakker.io/java/docker-gradle-multistage/) along with an article that provides a decent overview of [best practices](https://blog.docker.com/2019/07/intro-guide-to-dockerfile-best-practices/).
 The above will now pull in gradle and build our project into the `/home/gradle/src`.
 
