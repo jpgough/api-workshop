@@ -78,6 +78,6 @@ We recommend installing the following software ahead of the workshop, though the
 
 ## A REST client
 We will be making requests to the services we build so it is really useful to have a rest client. Please use any of the suggested options:
-   * IntelliJ there is one available in Tools -> HTTP Client -> Test RESTful Web Service
+   * In IntelliJ there is one available in Tools -> HTTP Client -> Test RESTful Web Service
    * For Windows or Mac [POSTman](https://www.getpostman.com/downloads/)
    * For chrome [restlet client](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en)
