@@ -33,20 +33,6 @@ public class TestTodosServiceShould {
                 ;
     }
 
-//    @Pact(consumer = "todo-api-consumer-pact-update-no")
-//    public RequestResponsePact updateAToDoThatDoesNotExist(PactDslWithProvider builder) {
-//        return builder
-//                .given("an todo of id 1 has already been created")
-//                .uponReceiving("a request to update a todo that does not exist")
-//                .matchPath("/todos/1000")
-//                .method("PUT")
-//                .headers("Content-Type", "application/json")
-//                .body("{\"message\":\"Make all the beds\"}")
-//                .willRespondWith()
-//                .status(404)
-//                .toPact();
-//    }
-
     TodosService todosService = new TodosService();
 
     @Before
@@ -60,11 +46,4 @@ public class TestTodosServiceShould {
         //NO CONTENT
         assertEquals(this.todosService.updateTodo(1, new Todo("Make all the beds")).getStatusCodeValue(), 204);
     }
-
-//    @Test
-//    @PactVerification
-//    public void updateTodoThatDoesNotExist() {
-//        //NO CONTENT
-//        assertEquals(this.todosService.updateTodo(1000, new Todo("Make all the beds")).getStatusCodeValue(), 404);
-//    }
 }

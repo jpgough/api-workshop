@@ -3,7 +3,6 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-
         classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.7.RELEASE"
         classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.1.2.RELEASE"
         classpath "org.springframework.cloud:spring-cloud-contract-pact:2.1.2.RELEASE"
@@ -34,7 +33,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
-    testCompile "au.com.dius:pact-jvm-consumer-junit_2.12:3.5.13"
+//    testCompile "au.com.dius:pact-jvm-consumer-junit_2.12:3.5.13"
 }
 
 dependencyManagement {
@@ -45,20 +44,21 @@ dependencyManagement {
 
 contracts {
 
-    // Base class mappings etc.
-    baseClassForTests = "com.budlee.apiworkshop.contract.ContractBase"
+//    Step 1
+//    baseClassForTests = "com.budlee.apiworkshop.contract.ContractBase"
 
-//    Additional config for remote contract tests
-//    When + is passed, a latest tag will be applied when fetching pacts
-//    contractDependency {
-//        stringNotation = "${project.group}.${project.name}:todo-api-producer-pact:+"
-//    }
-//    contractRepository {
-//        repositoryUrl = "pact://http://localhost:8085"
-//    }
-//    contractsMode = "REMOTE"
+//  Step - 6 Multiple Base class mappings etc.
+//    packageWithBaseClasses = "com.budlee.apiworkshop.contract"
 
 
-
-
+//  Step 7 - Remote Pact setup. Additional config for remote contract tests
+//  When + is passed, a latest tag will be applied when fetching pacts
+    baseClassForTests = "com.budlee.apiworkshop.contract.pact.ContractBase"
+    contractDependency {
+        stringNotation = "com.budlee.apiworkshop:todo-api-producer-pact:+"
+    }
+    contractRepository {
+        repositoryUrl = "pact://http://localhost:8085"
+    }
+    contractsMode = "REMOTE"
 }

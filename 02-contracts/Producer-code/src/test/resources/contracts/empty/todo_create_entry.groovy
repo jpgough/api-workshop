@@ -1,10 +1,10 @@
-
+package empty
 
 org.springframework.cloud.contract.spec.Contract.make {
     request {
         method POST()
         headers {
-            contentType('application/json')
+            contentType(applicationJson())
         }
         url '/todos'
         body(

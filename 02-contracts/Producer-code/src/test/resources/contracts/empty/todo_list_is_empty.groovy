@@ -1,12 +1,15 @@
-package contracts
+package empty
 
 org.springframework.cloud.contract.spec.Contract.make {
     request {
-        method 'GET'
+        method GET()
         url '/todos'
+        headers {
+            contentType(applicationJson())
+        }
     }
     response {
-        status 200
+        status OK()
         body([])
     }
 }
