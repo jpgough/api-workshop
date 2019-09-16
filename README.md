@@ -25,10 +25,10 @@ Please visit the [prerequisite](prerequisites/README.md) page to perform these s
 
 ## Introduction Sessions
 
-| Theme                         | Introduction Talk                                     |  Demo        |
-| ----------------------------- | ----------------------------------------------------- | ------------ |
-| API Gateways                  | Coming Soon                                           | Coming Soon  |
-| Service Mesh                  | Coming Soon                                           | Coming Soon  |
+| Theme                         | Introduction Talk                                     |  Demo                               |
+| ----------------------------- | ----------------------------------------------------- | ----------------------------------- |
+| API Gateways                  | [API Gateways](/presentations/05-gateways.pdf)        | [Gateways](/05-gateways/README.md)  |
+| Service Mesh                  | Coming Soon                                           | Coming Soon                         |
 
 ## Sample Solutions
 
