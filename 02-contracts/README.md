@@ -113,12 +113,12 @@ The final step is to run the tests and view the results.
 We can do this by running `gradle test` and if everything works we should see a successful build.
 In the directory `build/reports/tests/test` there is an `index.html` file that can be loaded in a browser to view the results of our tests.
 
-![Test Results](02A-top-level-tests.png)
+![Test Results](images/02A-top-level-tests.png)
 
 The results show us our two tests, the config test provided from SpringInitializr and our new contract test.
 We can drill into the test in more details.
 
-![Test Results Detailed](02B-contract-tests.png)
+![Test Results Detailed](images/02B-contract-tests.png)
 
 In the directory `build/generated-test-sources` we can find the test that was generated and executed
 
@@ -189,7 +189,7 @@ Then configure the build.gradle to specify where the base classes exist
 ```gradle
 contracts {
 //     Base class mappings etc.
-    packageWithBaseClasses = "com.budlee.apiworkshop.contract"
+    packageWithBaseClasses = "com.jpgough.apiworkshop.contract"
 }
 ```
 
@@ -239,10 +239,10 @@ buildscript {
 We also need to configure where the pact broker lives
 ```groovy
 contracts {
-	baseClassForTests = "com.budlee.apiworkshop.contract.ExistingBase"
+	baseClassForTests = "com.jpgough.apiworkshop.contract.ExistingBase"
 //    When + is passed, a latest tag will be applied when fetching pacts
     contractDependency {
-        stringNotation = "com.budlee.apiworkshop:todo-api-producer-pact:+"
+        stringNotation = "com.jpgough.apiworkshop:todo-api-producer-pact:+"
     }
     contractRepository {
         repositoryUrl = "pact://http://localhost:8085"
