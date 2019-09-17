@@ -58,7 +58,7 @@ Great we are all setup to write our first contract
 org.springframework.cloud.contract.spec.Contract.make {
     request {
         method 'GET'
-        url '/todo'
+        url '/todos'
     }
     response {
         status 200
@@ -96,7 +96,7 @@ public abstract class ContractBase {
 }
 ```
 
-You may have noticed a couple of things, this is an `abstract class` and only contains a `@Before``@Before` annotation and no actual tests.
+You may have noticed a couple of things, this is an `abstract class` and only contains a `@Before` annotation and no actual tests.
 The tests are going to be generated from the contracts we have specified and the generated test will extend this base class
 
 The final step is to return to our `build.gradle` and point to our base class for testing
