@@ -14,11 +14,10 @@ Before we start it's important to scope what should have been done in lab 1 (in 
 ### Step 1 - Configuring Spring Cloud Contracts
 
 As always it's probably a good idea to commit the work from the previous lab if you have not already.
-In our `build.gradle` you will need to check that you have the following dependencies.
+In our `build.gradle` you will need to check that you have the following dependencies
 The `classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.1.2.RELEASE"` is a gradle plugin to allow us to work with Spring Cloud Contracts. We need to import the plugin and the declare we are using it by adding `apply plugin: 'spring-cloud-contract'`
 
-This should appear in the buildscript as follows, if it does not then copy the configuration in
-
+This should appear in the buildscript as follows, if it done not then copy the configuration in
 ```groovy
 buildscript {
 	repositories {
@@ -30,6 +29,20 @@ buildscript {
 	}
 }
 apply plugin: 'spring-cloud-contract'
+```
+
+This should appear in the buildscript as follows, if it does not then copy the configuration in
+
+The `testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'` is the Spring Cloud Contract verifier, it generates tests to confirm your application conforms to the pacts (contracts).
+	
+This should appear in your dependencies as follows
+
+```groovy
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+}
 ```
 
 The `testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'` is the Spring Cloud Contract verifier, it generates tests to confirm your application conforms to the pacts (contracts).
