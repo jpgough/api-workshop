@@ -32,7 +32,7 @@ Please visit the [prerequisite](prerequisites/README.md) page to perform these s
 
 ## Sample Solutions
 
-Sample solutions will be available shortly here. 
+A sample solution for the workshop can be found [here](https://github.com/jpgough/api-workshop-solution).
 
 ### Feedback or Suggestions
 
