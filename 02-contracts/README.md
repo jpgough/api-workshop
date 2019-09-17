@@ -257,3 +257,7 @@ Run `gradle test` and you should now be pulling in the contract and have a faili
 ![Failing Pact test](images/failing_pact_test.png)
 
 What is the contract asking for? The task is to edit the TODO controller and fulfil the PUT request to edit a TODO and return a 204.
+
+
+### Where can I find more?
+You can check out lots of [spring cloud contracts](https://spring.io/projects/spring-cloud-contract#overview) examples at the github page: https://github.com/spring-cloud-samples/spring-cloud-contract-samples
