@@ -58,7 +58,7 @@ Great we are all setup to write our first contract
 org.springframework.cloud.contract.spec.Contract.make {
     request {
         method 'GET'
-        url '/todo'
+        url '/todos'
     }
     response {
         status 200
@@ -96,7 +96,7 @@ public abstract class ContractBase {
 }
 ```
 
-You may have noticed a couple of things, this is an `abstract class` and only contains a `@Before``@Before` annotation and no actual tests.
+You may have noticed a couple of things, this is an `abstract class` and only contains a `@Before` annotation and no actual tests.
 The tests are going to be generated from the contracts we have specified and the generated test will extend this base class
 
 The final step is to return to our `build.gradle` and point to our base class for testing
@@ -257,3 +257,7 @@ Run `gradle test` and you should now be pulling in the contract and have a faili
 ![Failing Pact test](images/failing_pact_test.png)
 
 What is the contract asking for? The task is to edit the TODO controller and fulfil the PUT request to edit a TODO and return a 204.
+
+
+### Where can I find more?
+You can check out lots of [spring cloud contracts](https://spring.io/projects/spring-cloud-contract#overview) examples at the github page: https://github.com/spring-cloud-samples/spring-cloud-contract-samples
