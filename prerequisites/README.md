@@ -11,12 +11,12 @@ The tasks that will be the following
    
    * Visit https://adoptopenjdk.net
    
-   * Select Java version 12, Hotspot and then Download.
+   * Select Java version 11, Hotspot and then Download.
     ![Install Java image](images/java_install.png)
 
    * Next follow the steps to install the package you have downloaded.
-      * Windows - [Install page](https://adoptopenjdk.net/installation.html?variant=openjdk12&jvmVariant=hotspot#windows-msi)
-      * Mac - [Install page](https://adoptopenjdk.net/installation.html?variant=openjdk12&jvmVariant=hotspot#macos-pkg)
+      * Windows - [Install page](https://adoptopenjdk.net/installation.html?variant=openjdk11&jvmVariant=hotspot#windows-msi)
+      * Mac - [Install page](https://adoptopenjdk.net/installation.html?variant=openjdk11&jvmVariant=hotspot#macos-pkg)
 
 ## Install and IDE
 The next stage is to install an IDE 
@@ -65,7 +65,7 @@ As part of the workshop we will require the downloading of some docker images. T
    docker pull postgres:latest
    docker pull dius/pact-broker:latest
    docker pull jpgough/api-workshop-gateway
-   docker pull gradle:jdk12
+   docker pull gradle:jdk11
    ```
 
 # Recommended prerequisite.

@@ -19,7 +19,7 @@ apply plugin: 'spring-cloud-contract'
 
 group = 'com.budlee.contract'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '12'
+sourceCompatibility = '11'
 
 configurations {
     developmentOnly
