@@ -133,7 +133,7 @@ We can now run our image using the following docker command
 
 `docker run -p 8080:8080 -t apiworkshop:v1`
 
-Note the -p command sets up the port mapping. http://localhost:8081/hello - will now be the docker hosted application. 
+Note the -p command sets up the port mapping. http://localhost:8080/hello - will now be the docker hosted application. 
 We can view our running docker containers using the command `docker ps`
 
 ```
