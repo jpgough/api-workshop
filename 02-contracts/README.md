@@ -96,6 +96,8 @@ public abstract class ContractBase {
 }
 ```
 
+**Note** that this ContractBase file should be put in the `test` folder
+
 You may have noticed a couple of things, this is an `abstract class` and only contains a `@Before` annotation and no actual tests.
 The tests are going to be generated from the contracts we have specified and the generated test will extend this base class
 
