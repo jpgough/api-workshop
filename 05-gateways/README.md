@@ -10,11 +10,11 @@ Create the following `docker-compose.yaml` in the root of the todo application
 ```yaml
 version: '3'
 services:
-  task-service:
+  todo-service:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: "task-service:latest"
+    image: "todo-service:latest"
     ports:
       - "8080:8080"
   api-gateway:
