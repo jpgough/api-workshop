@@ -16,19 +16,19 @@ Please visit the [prerequisite](prerequisites/README.md) page to perform these s
 
 ## Hands on Sessions
 
-| Theme                         | Introduction Talk                                     |  Self Teaching Blog Post | Lab Work                                               |
-|-------------------------------|----------------------------------------------------------|--------------------------|------------------------------------------------------- |
-| Building an API               | [Spring Boot](/presentations/01-spring-boot.pdf)         | Coming Soon              | [Spring Boot](/01-spring-boot/README.md)               |
-| Contract Driven Development   | [Spring Cloud Contract](/presentations/02-contracts.pdf) | Coming Soon              | [Contract Driven Development](/02-contracts/README.md) |
-| Open API Specifications       | [Open API](/presentations/03-open-api.pdf)               | Coming Soon              | [Open API](/03-open-api/README.md)                     | 
-| Versioning                    | [Versioning](/presentatinos/04-versioning.pdf)           | Coming Soon              | [Versioning](/04-versioning/README.md)                 | 
+| Theme                         | Introduction Talk                                     | Lab Work                                               |
+|-------------------------------|----------------------------------------------------------|------------------------------------------------------- |
+| Building an API               | [Spring Boot](/presentations/01-spring-boot.pdf)         | [Spring Boot](/01-spring-boot/README.md)               |
+| Contract Driven Development   | [Spring Cloud Contract](/presentations/02-contracts.pdf) | [Contract Driven Development](/02-contracts/README.md) |
+| Open API Specifications       | [Open API](/presentations/03-open-api.pdf)               | [Open API](/03-open-api/README.md)                     | 
+| Versioning                    | [Versioning](/presentatinos/04-versioning.pdf)           | [Versioning](/04-versioning/README.md)                 | 
 
 ## Introduction Sessions
 
 | Theme                         | Introduction Talk                                     |  Demo                               |
 | ----------------------------- | ----------------------------------------------------- | ----------------------------------- |
 | API Gateways                  | [API Gateways](/presentations/05-gateways.pdf)        | [Gateways](/05-gateways/README.md)  |
-| Service Mesh                  | Coming Soon                                           | Coming Soon                         |
+
 
 ## Sample Solutions
 
