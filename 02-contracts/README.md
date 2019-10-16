@@ -99,7 +99,9 @@ public abstract class ContractBase {
 **Note** that this ContractBase file should be put in the `test` folder
 
 You may have noticed a couple of things, this is an `abstract class` and only contains a `@Before` annotation and no actual tests.
-The tests are going to be generated from the contracts we have specified and the generated test will extend this base class
+The tests are going to be generated from the contracts we have specified and the generated test will extend this base class.
+
+There is no reason not to use @SpringBootTest instead of using RestAssured to configure and launch your controller under test.
 
 The final step is to return to our `build.gradle` and point to our base class for testing
 
