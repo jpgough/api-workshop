@@ -32,7 +32,7 @@ The next stage is to install an IDE
       ![Setup the SDK](images/no_sdk.png)
       * Select New -> JDK
       * Navigate to your installed Java SDK
-         * Windows - c:\ProgramFiles\AdoptOpenJDK\\***version-downloaded***
+         * Windows - c:\Program Files\AdoptOpenJDK\\***version-downloaded***
          * Mac - /Library/Java/JavaVirtualMachines/***version-downloaded***/Contents/Home
 
 ### Eclipse
