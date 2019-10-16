@@ -80,7 +80,7 @@ The application doesn't need to persist any data, though if you wanted to contin
 Here are the operations that we will look to implement:
 
 * `GET /todos` Returns a list of todo items, initially the list will be empty
-* `POST /todos/1` Creates a todo item with the ID 1
+* `POST /todos` Creates a todo item
 * `GET /todos/1` Returns the todo item with the ID 1
 * `DELETE /todos/1` Remove the todo item 1
 
@@ -110,7 +110,7 @@ The application will now be running and testable on http://localhost:8080/hello.
 The following `Dockerfile` can now be created in the root of the project.
 
 ```
-FROM adoptopenjdk:12-jre-hotspot
+FROM adoptopenjdk:11-jre-hotspot
 RUN mkdir /opt/app
 ADD build/libs/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
 EXPOSE 8080
@@ -133,7 +133,7 @@ We can now run our image using the following docker command
 
 `docker run -p 8080:8080 -t apiworkshop:v1`
 
-Note the -p command sets up the port mapping. http://localhost:8081/hello - will now be the docker hosted application. 
+Note the -p command sets up the port mapping. http://localhost:8080/hello - will now be the docker hosted application. 
 We can view our running docker containers using the command `docker ps`
 
 ```
@@ -152,7 +152,7 @@ This is both easy to forget and makes creating a build pipeline that bit more co
 There is a solution, and that is that we modify the `Dockerfile` to both build the java code and create the runnable image. 
 
 ```
-FROM gradle:jdk12 as builder
+FROM gradle:jdk11 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
@@ -167,13 +167,13 @@ We can replace the `ADD` command with a `COPY` to move the jar from the gradle b
 The complete Dockerfile would look like this.
 
 ```
-FROM gradle:jdk12 as builder
+FROM gradle:jdk11 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build
 
-FROM adoptopenjdk:12-jre-hotspot
+FROM adoptopenjdk:11-jre-hotspot
 RUN mkdir /opt/app
 COPY --from=builder /home/gradle/src/build/libs/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
 EXPOSE 8080
