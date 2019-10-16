@@ -47,12 +47,16 @@ We next need to install Docker. First it is necessary to create a Docker account
 
 * To create a Docker account visit the following website and register: https://hub.docker.com/signup
 
-* Visit https://hub.docker.com/?overlay=onboarding
-   * Follow the first step to download Docker for your operating system
-   * Run the downloaded file
-      * Windows run the EXE file
-      * Mac run the DMG file
-   * If you wish continue with the rest of the docker guide, however, it is not important
+* Next depending on your system you will need to choose the Docker version to install
+
+   * For **Windows 10 Home Edition** you will need to install the legacy [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/). The instructions can be found [here](https://docs.docker.com/toolbox/toolbox_install_windows/) and are indepth so should be followed carefully
+
+   * For **Mac** or **any other Windows Edition** Visit https://hub.docker.com/?overlay=onboarding
+      * Follow the first step to download Docker for your operating system
+      * Run the downloaded file
+         * Windows run the EXE file
+         * Mac run the DMG file
+      * If you wish continue with the rest of the docker guide, however, it is not important
 
 ## Docker images
 As part of the workshop we will require the downloading of some docker images. These can be quite large so to save time it may be simpler to download these now
