@@ -6,6 +6,7 @@ The tasks that will be the following
 * Download Java SDK
 * Install one of the following IDE's, Intellij/Eclipse, IntelliJ is recommended
 * Download Docker and pull in some images
+* Download the baseline project for the labs
 
 ## Downloading Java SDK
    
@@ -71,6 +72,11 @@ As part of the workshop we will require the downloading of some docker images. T
    docker pull jpgough/api-workshop-gateway
    docker pull gradle:jdk11
    ```
+
+## Baseline project for the labs
+In order to save time during the workshop it would useful for you to download the baseline SpringBoot project that will be needed for the labs. The following URL will take you directly to https://start.spring.io where you can click **Generate** to download a zip file containing the project. 
+
+`https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.1.9.RELEASE&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
 
 # Recommended prerequisite.
 We recommend installing the following software ahead of the workshop, though they are small so it is not essential
