@@ -48,7 +48,7 @@ In the project we will create a small REST controller.
 Spring boot works by scanning classes and looking for annotations it recognises.
 Based on these annotations it will be opinionated and choose what it thinks the right set of configuration should look like.
 
-Usually controllers would live in their own package, the `WorkshopController.java` below should be created in your project.
+Usually controllers would live in their own package, you should create the `WorkshopController.java` in your project.
 
 ```java
 import org.springframework.web.bind.annotation.RequestMapping;
