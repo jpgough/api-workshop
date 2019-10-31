@@ -100,6 +100,8 @@ Follow the wizard to bring in the project and resolve the dependencies.
 
 ![Eclipse Project Import](../01-spring-boot/01B2-eclipse.png)
 
+### Verify it works
+Now simply run `gradlew test` from the command line to verify that the base project works as expected.
 
 # Recommended prerequisite.
 We recommend installing the following software ahead of the workshop, though they are small so it is not essential
