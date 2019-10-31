@@ -78,6 +78,8 @@ In order to save time during the workshop it would useful for you to download th
 
 `https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.1.9.RELEASE&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
 
+Unzip the downloaded zip file and run `gradlew build`. This will pre-download the required version of Gradle using the Gradle Wrapper, as well as the initial dependencies we need to get started.
+
 # Recommended prerequisite.
 We recommend installing the following software ahead of the workshop, though they are small so it is not essential
 
