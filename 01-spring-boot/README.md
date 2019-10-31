@@ -21,7 +21,10 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 
 ![Spring Initializr](01A-initializr-config.png)
 
-Generating the project will download the dependencies and structure of a working Spring Application. 
+Generating the project will download the dependencies and structure of a working Spring Application.
+
+Alternatively, use this [link](https://start.spring.io/starter.zip?type=gradle-project&language=java&bootVersion=2.1.9.RELEASE&baseDir=apiworkshop&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&packaging=jar&javaVersion=11&dependencies=web&dependencies=cloud-contract-verifier) to directly download the base project.
+
 
 ### Step 2 - Importing the Project
 
