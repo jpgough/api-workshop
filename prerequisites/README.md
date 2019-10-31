@@ -77,14 +77,14 @@ As part of the workshop we will require the downloading of some docker images. T
 In order to save time during the workshop it would useful for you to download the baseline SpringBoot project and cache some of dependencies that will be needed for the labs.
 
 ### Download SpringBoot project
-The following URL will take you directly to https://start.spring.io where you can click **Generate** to download a zip file containing the project. 
+The following URL is pre-configured to take you directly to https://start.spring.io and download a zip file containing the project. Just open your browser and enter the URL, the download should begin.
 
-`https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.1.9.RELEASE&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
+`https://start.spring.io/starter.zip?type=gradle-project&language=java&bootVersion=2.1.9.RELEASE&baseDir=apiworkshop&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&packaging=jar&javaVersion=11&dependencies=web&dependencies=cloud-contract-verifier`
 
 Unzip the downloaded archive to a location on your file system.
 
 ### Import project into you IDE
-Import the project into your IntelliJ by opening the the `build.gradle` file as a project.
+Import the project into IntelliJ by opening the the `build.gradle` file as a project.
 
 ![Intellij Project Import](../01-spring-boot/01B-sample-import.png)
 
