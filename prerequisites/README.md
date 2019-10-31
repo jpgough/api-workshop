@@ -98,7 +98,7 @@ File `->` Import `->` Gradle `->` Existing Gradle Project.
 Follow the wizard to bring in the project and resolve the dependencies.
  
 
-![Eclipse Project Import](01B2-eclipse.png)
+![Eclipse Project Import](../01-spring-boot/01B2-eclipse.png)
 
 
 # Recommended prerequisite.
