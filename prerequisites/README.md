@@ -74,11 +74,32 @@ As part of the workshop we will require the downloading of some docker images. T
    ```
 
 ## Baseline project for the labs
-In order to save time during the workshop it would useful for you to download the baseline SpringBoot project that will be needed for the labs. The following URL will take you directly to https://start.spring.io where you can click **Generate** to download a zip file containing the project. 
+In order to save time during the workshop it would useful for you to download the baseline SpringBoot project and cache some of dependencies that will be needed for the labs.
+
+### Download SpringBoot project
+The following URL will take you directly to https://start.spring.io where you can click **Generate** to download a zip file containing the project. 
 
 `https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.1.9.RELEASE&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
 
-Unzip the downloaded zip file and run `gradlew build`. This will pre-download the required version of Gradle using the Gradle Wrapper, as well as the initial dependencies we need to get started.
+Unzip the downloaded archive to a location on your file system.
+
+### Import project into you IDE
+Import the project into your IntelliJ by opening the the `build.gradle` file as a project.
+
+![Intellij Project Import](../01-spring-boot/01B-sample-import.png)
+
+On hitting OK the project will most likely download the internet (or at least all the required dependencies). 
+Once this has completed your baseline project is ready. 
+You can try running the tests to verify that your project builds and the context loads correctly.
+
+#### Eclipse
+
+File `->` Import `->` Gradle `->` Existing Gradle Project.    
+Follow the wizard to bring in the project and resolve the dependencies.
+ 
+
+![Eclipse Project Import](01B2-eclipse.png)
+
 
 # Recommended prerequisite.
 We recommend installing the following software ahead of the workshop, though they are small so it is not essential
