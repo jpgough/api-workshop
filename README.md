@@ -14,6 +14,8 @@ There are some steps that should be followed before attending the workshop which
 
 Please visit the [prerequisite](prerequisites/README.md) page to perform these steps
 
+Join the Chatroom [![Gitter](https://badges.gitter.im/jpgough-api-workshop/community.svg)](https://gitter.im/jpgough-api-workshop/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 ## Hands on Sessions
 
 | Theme                         | Introduction Talk                                     | Lab Work                                               |

@@ -12,7 +12,8 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 
 * Visit [https://start.spring.io](https://start.spring.io) to create a new project
 * Choose a gradle project for the lab
-* We will use Java and the latest version of Spring Boot
+* We will use Java
+* Select a **2.1.x** version of Spring Boot
 * Create some project metadata that makes sense
 * Add in the required dependencies, to get us started we will add
    * Cloud Contract Verifier (which we will use in Lab 2)
