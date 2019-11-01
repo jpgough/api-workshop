@@ -43,36 +43,6 @@ The next stage is to install an IDE
       * Windows - Unzip the downloaded zip folder and run the eclipse.exe file
       * Mac - Open the DMG file and eclipse will install
 
-## Docker
-We next need to install Docker. First it is necessary to create a Docker account.
-
-* To create a Docker account visit the following website and register: https://hub.docker.com/signup
-
-* Next depending on your system you will need to choose the Docker version to install
-
-   * For **Windows 10 Home Edition** you will need to install the legacy [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/). The instructions can be found [here](https://docs.docker.com/toolbox/toolbox_install_windows/) and are indepth so should be followed carefully
-
-   * For **Mac** or **any other Windows Edition** Visit https://hub.docker.com/?overlay=onboarding
-      * Follow the first step to download Docker for your operating system
-      * Run the downloaded file
-         * Windows run the EXE file
-         * Mac run the DMG file
-      * If you wish continue with the rest of the docker guide, however, it is not important
-
-## Docker images
-As part of the workshop we will require the downloading of some docker images. These can be quite large so to save time it may be simpler to download these now
-
-   * Open a cli
-      * Windows - Powershell
-      * Mac - terminal
-   * Execute the following commands
-   ```docker
-   docker pull postgres:latest
-   docker pull dius/pact-broker:latest
-   docker pull jpgough/api-workshop-gateway
-   docker pull gradle:jdk11
-   ```
-
 ## Baseline project for the labs
 In order to save time during the workshop it would useful for you to download the baseline SpringBoot project and cache some of dependencies that will be needed for the labs.
 
@@ -103,6 +73,36 @@ Follow the wizard to bring in the project and resolve the dependencies.
 ### Verify it works
 Now simply run `gradlew test` from the command line to verify that the base project works as expected.
 
+## Docker
+We next need to install Docker. First it is necessary to create a Docker account.
+
+* To create a Docker account visit the following website and register: https://hub.docker.com/signup
+
+* Next depending on your system you will need to choose the Docker version to install
+
+   * For **Windows 10 Home Edition** you will need to install the legacy [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/). The instructions can be found [here](https://docs.docker.com/toolbox/toolbox_install_windows/) and are indepth so should be followed carefully
+
+   * For **Mac** or **any other Windows Edition** Visit https://hub.docker.com/?overlay=onboarding
+      * Follow the first step to download Docker for your operating system
+      * Run the downloaded file
+         * Windows run the EXE file
+         * Mac run the DMG file
+      * If you wish continue with the rest of the docker guide, however, it is not important
+
+## Docker images
+As part of the workshop we will require the downloading of some docker images. These can be quite large so to save time it may be simpler to download these now
+
+   * Open a cli
+      * Windows - Powershell
+      * Mac - terminal
+   * Execute the following commands
+   ```docker
+   docker pull postgres:latest
+   docker pull dius/pact-broker:latest
+   docker pull jpgough/api-workshop-gateway
+   docker pull gradle:jdk11
+   ```
+   
 # Recommended prerequisite.
 We recommend installing the following software ahead of the workshop, though they are small so it is not essential
 
