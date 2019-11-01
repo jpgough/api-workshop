@@ -9,6 +9,7 @@ We are going to create a project using Spring Boot. Take a moment to think about
 Our workshop starts with a empty folder. We are going to use [SpringInitalizr](https://start.spring.io) to create our project and get started.
 
 ### Step 1 - Generating the Project
+If you've already completed the [pre-requisites](../prerequisites/README.md) you can skip forward to Step 3.
 
 * Visit [https://start.spring.io](https://start.spring.io) to create a new project
 * Choose a gradle project for the lab
@@ -86,6 +87,7 @@ Here are the operations that we will look to implement:
 * `GET /todos` Returns a list of todo items, initially the list will be empty
 * `POST /todos` Creates a todo item
 * `GET /todos/1` Returns the todo item with the ID 1
+* `GET /todos?done=false` Returns a list of todo items, excluding those that are already done
 * `DELETE /todos/1` Remove the todo item 1
 
 #### Design considerations
