@@ -9,6 +9,7 @@ We are going to create a project using Spring Boot. Take a moment to think about
 Our workshop starts with a empty folder. We are going to use [SpringInitalizr](https://start.spring.io) to create our project and get started.
 
 ### Step 1 - Generating the Project
+If you've already completed the [pre-requisites](../prerequisites/README.md) you can skip forward to Step 3.
 
 * Visit [https://start.spring.io](https://start.spring.io) to create a new project
 * Choose a gradle project for the lab
@@ -21,7 +22,10 @@ Our workshop starts with a empty folder. We are going to use [SpringInitalizr](h
 
 ![Spring Initializr](01A-initializr-config.png)
 
-Generating the project will download the dependencies and structure of a working Spring Application. 
+Generating the project will download the dependencies and structure of a working Spring Application.
+
+Alternatively, use this [link](https://start.spring.io/starter.zip?type=gradle-project&language=java&bootVersion=2.1.9.RELEASE&baseDir=apiworkshop&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&packaging=jar&javaVersion=11&dependencies=web&dependencies=cloud-contract-verifier) to directly download the base project.
+
 
 ### Step 2 - Importing the Project
 
@@ -83,6 +87,7 @@ Here are the operations that we will look to implement:
 * `GET /todos` Returns a list of todo items, initially the list will be empty
 * `POST /todos` Creates a todo item
 * `GET /todos/1` Returns the todo item with the ID 1
+* `GET /todos?done=false` Returns a list of todo items, excluding those that are already done
 * `DELETE /todos/1` Remove the todo item 1
 
 #### Design considerations

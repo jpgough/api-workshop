@@ -6,6 +6,7 @@ The tasks that will be the following
 * Download Java SDK
 * Install one of the following IDE's, Intellij/Eclipse, IntelliJ is recommended
 * Download Docker and pull in some images
+* Download the baseline project for the labs
 
 ## Downloading Java SDK
    
@@ -42,6 +43,36 @@ The next stage is to install an IDE
       * Windows - Unzip the downloaded zip folder and run the eclipse.exe file
       * Mac - Open the DMG file and eclipse will install
 
+## Baseline project for the labs
+In order to save time during the workshop it would useful for you to download the baseline SpringBoot project and cache some of dependencies that will be needed for the labs.
+
+### Download SpringBoot project
+The following URL is pre-configured to take you directly to https://start.spring.io and download a zip file containing the project. Just open your browser and enter the URL, the download should begin.
+
+`https://start.spring.io/starter.zip?type=gradle-project&language=java&bootVersion=2.1.9.RELEASE&baseDir=apiworkshop&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&packaging=jar&javaVersion=11&dependencies=web&dependencies=cloud-contract-verifier`
+
+Unzip the downloaded archive to a location on your file system.
+
+### Import project into you IDE
+Import the project into IntelliJ by opening the the `build.gradle` file as a project.
+
+![Intellij Project Import](../01-spring-boot/01B-sample-import.png)
+
+On hitting OK the project will most likely download the internet (or at least all the required dependencies). 
+Once this has completed your baseline project is ready. 
+You can try running the tests to verify that your project builds and the context loads correctly.
+
+#### Eclipse
+
+File `->` Import `->` Gradle `->` Existing Gradle Project.    
+Follow the wizard to bring in the project and resolve the dependencies.
+ 
+
+![Eclipse Project Import](../01-spring-boot/01B2-eclipse.png)
+
+### Verify it works
+Now simply run `gradlew test` from the command line to verify that the base project works as expected.
+
 ## Docker
 We next need to install Docker. First it is necessary to create a Docker account.
 
@@ -71,7 +102,7 @@ As part of the workshop we will require the downloading of some docker images. T
    docker pull jpgough/api-workshop-gateway
    docker pull gradle:jdk11
    ```
-
+   
 # Recommended prerequisite.
 We recommend installing the following software ahead of the workshop, though they are small so it is not essential
 
