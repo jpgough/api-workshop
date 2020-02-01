@@ -3,15 +3,15 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.1.2.RELEASE'
-        classpath "org.springframework.cloud:spring-cloud-contract-pact:2.1.2.RELEASE"
-        classpath "au.com.dius:pact-jvm-provider-gradle_2.12:3.5.23"
+        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.1.RELEASE'
+        classpath "org.springframework.cloud:spring-cloud-contract-pact:2.2.1.RELEASE"
+        classpath "au.com.dius:pact-jvm-provider-gradle:4.0.5"
     }
 }
 
 plugins {
-    id 'org.springframework.boot' version '2.1.8.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
 }
 
@@ -36,14 +36,22 @@ repositories {
 }
 
 ext {
-    set('springCloudVersion', "Greenwich.SR2")
+    set('springCloudVersion', "Hoxton.SR1")
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
-    testCompile "au.com.dius:pact-jvm-consumer-junit_2.12:3.5.13"
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testCompile "au.com.dius:pact-jvm-consumer-junit5:4.0.5"
+
+
+}
+test {
+    systemProperties['pact.rootDir'] = "${project.rootDir}/target/pacts"
+    useJUnitPlatform()
 }
 
 dependencyManagement {
@@ -76,3 +84,7 @@ task stopPactBroker(type: Exec) {
 
 pactPublish.dependsOn("startPactBroker")
 test.finalizedBy("pactPublish")
+
+contracts {
+    failOnNoContracts = false
+}
