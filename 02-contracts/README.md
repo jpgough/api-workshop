@@ -4,18 +4,18 @@ In lab 1 we created an API for tracking a todo list.
 One thing you may have felt whilst writing the code was the requirement to do manual testing.
 In this lab we will explore writing Contract Driven Tests for our todo list application.
 
-#### Lab 1 Recap
+## Lab 1 Recap
 
 Before we start it's important to scope what should have been done in lab 1 (in an ideal solution/world).
 
 * A `Todo` Controller should have been created and unit tested for accuracy
 * The `Todo` Controller should have implemented the GET, POST and DELETE behaviour described in [Lab 1](../01-spring-boot/README.md).
 
-### Step 1 - Configuring Spring Cloud Contracts
+## Step 1 - Configuring Spring Cloud Contracts
 
 As always it's probably a good idea to commit the work from the previous lab if you have not already.
 In our `build.gradle` you will need to check that you have the following dependencies.
-The `classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.1.2.RELEASE"` is a gradle plugin to allow us to work with Spring Cloud Contracts. We need to import the plugin and the declare we are using it by adding `apply plugin: 'spring-cloud-contract'`
+The `classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.1.RELEASE"` is a gradle plugin to allow us to work with Spring Cloud Contracts. We need to import the plugin and the declare we are using it by adding `apply plugin: 'spring-cloud-contract'`
 
 This should appear in the buildscript as follows, if it does not then copy the configuration in
 
@@ -25,28 +25,29 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.7.RELEASE"
-		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.1.2.RELEASE"
-	}
+        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.1.RELEASE'
+    }
 }
 apply plugin: 'spring-cloud-contract'
 ```
 
 The `testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'` is the Spring Cloud Contract verifier, it generates tests to confirm your application conforms to the pacts (contracts).
-	
+
 This should appear in your dependencies as follows
 
 ```groovy
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 ```
 
 Great we are all setup to write our first contract.
 
-### Step 2 - Writing your first contract
+## Step 2 - Writing your first contract
 
 * Create a folder called `resources` under the test directory
 * Inside the `resources` directory create a directory called `contracts`, this is where our contract tests will live.
@@ -66,37 +67,38 @@ org.springframework.cloud.contract.spec.Contract.make {
     }
 }
 ```
-The file represents a DSL specified in groovy for defining a contract. 
-One of the first manual tests we performed in our previous lab was to check the todos are initially empty. 
+
+The file represents a DSL specified in groovy for defining a contract.
+One of the first manual tests we performed in our previous lab was to check the todos are initially empty.
 
 Now we have our contract we need to provide some setup to run this.
 
-### Step 3 - Creating the Basis for the Test
+## Step 3 - Creating the Basis for the Test
 
 We need to setup a class that knows our `TODO` controller is the subject under test.
-Let this sink in and how it makes sense. We write a contract to define what interactions should happen. However, we need to configure the parts of the application that are going to verify the pacts 
+Let this sink in and how it makes sense. We write a contract to define what interactions should happen. However, we need to configure the parts of the application that are going to verify the pacts
 
-Lets do this by creating a class called `ContractBase.java`, which we prepare to be the basis for running our contracts.
+Lets do this by creating a class called `ContractsBase.java`, which we prepare to be the basis for running our contracts.
 
 ```java
 package com.jpgough.apiworkshop;
 
 import com.jpgough.apiworkshop.controller.TodosController;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
-public abstract class ContractBase {
+public abstract class ContractsBase {
 
     TodosController todoController = new TodosController();
 
-    @Before
+    @BeforeEach
     public void setup() {
         RestAssuredMockMvc.standaloneSetup(this.todoController);
     }
 }
 ```
 
-**Note** that this ContractBase file should be put in the `test` folder
+**Note** that this ContractsBase file should be put in the `test` folder
 
 You may have noticed a couple of things, this is an `abstract class` and only contains a `@Before` annotation and no actual tests.
 The tests are going to be generated from the contracts we have specified and the generated test will extend this base class.
@@ -107,12 +109,12 @@ The final step is to return to our `build.gradle` and point to our base class fo
 
 ```groovy
 contracts {
-	baseClassForTests = 'com.jpgough.apiworkshop.ContractBase'
+	baseClassForTests = 'com.jpgough.apiworkshop.ContractsBase'
 	// fully qualified name to a class that will be the base class for your generated test classes
 }
 ```
 
-### Step 4 - Running the Tests and Checking the Output
+## Step 4 - Running the Tests and Checking the Output
 
 The final step is to run the tests and view the results. 
 We can do this by running `gradle test` and if everything works we should see a successful build.
@@ -128,7 +130,7 @@ We can drill into the test in more details.
 In the directory `build/generated-test-sources` we can find the test that was generated and executed
 
 ```java
-public class ContractVerifierTest extends ContractBase {
+public class ContractVerifierTest extends ContractsBase {
 
 	@Test
 	public void validate_todo_list_is_empty() throws Exception {
@@ -151,11 +153,11 @@ It is worth keeping an eye on this folder as we go through the next part of the 
 If a test doesn't work as expected you may have to take a look in this file to check the test is as expected and it is sometimes worth running `gradle clean` to clear out the folder to force regenerating the test.
 You can also execute the tests from this directory in your IDE.
 
-It is also worth noting that this is using [Rest-assured](http://rest-assured.io) behind the scenes, another good mechanism for fine grain control when testing APIs. 
+It is also worth noting that this is using [Rest-assured](http://rest-assured.io) behind the scenes, another good mechanism for fine grain control when testing APIs.
 
-### Step 5 - Adding More Tests
+## Step 5 - Adding More Tests
 
-Our `ContractBase.java` allows us to cover a lot of negative test cases.
+Our `ContractsBase.java` allows us to cover a lot of negative test cases.
 When we use all the other requests we should see some failures.
 Try and add tests for the following API edge cases:
 
@@ -163,14 +165,13 @@ Try and add tests for the following API edge cases:
 * `DELETE /todos/1` - Should return a 404, as an item does not exist
 * `POST /todos` - Should return a 201 as the item does not exist
 
-
-### Step 6 - Extensions
+## Step 6 - Extensions
 
 This extension is a little tricky as it now requires us to have a different starting state.
-At this stage `ContractBase.java` should refactor to `EmptyBase.java` and we need to create a new base class `ExistingBase.java`
+At this stage `ContractsBase.java` should be renamed to `ContractsEmptyBase.java` and we then need to create an additional new base class `ContractsExistingBase.java`
 
 ```java
-public abstract class ExistingBase {
+public abstract class ContractsExistingBase {
 
     private TodosController todoController = new TodosController();
 
@@ -182,6 +183,7 @@ public abstract class ExistingBase {
 
 }
 ```
+
 It is possible to setup mappings to pick up different base classes for test types.
 The documentation for this can be found [here](https://cloud.spring.io/spring-cloud-contract/reference/htmlsingle/#how-to-protocol-convention-producer-with-contracts-stored-locally).
 
@@ -203,19 +205,20 @@ The scenarios we can now test include
 * Trying to add a todo that already exists
 * Getting todos includes todo 1
 * Retrieval of todo 1 succeeds with the description and a 200
-* Todo 1 can be removed successfully 
+* Todo 1 can be removed successfully
 
 It is also possible to have multiple tests executed together in scenarios using Spring Cloud Contract.
 
-
-### Step 7 - Extension 2
+## Step 7 - Extension 2
 
 A Consumer wants to add additional functionality to the Producer. They create a contract that they want the producer to fulfil.
 There is an application called a [Pact Broker](https://docs.pact.io/getting_started/sharing_pacts) which is a allows Consumers to push contracts to and Producers to pull.
 
-We are going to generate the contract by performing the following
+We are going to generate the contract. Please ensure you have cloned this project as the consumer code is  available [here](<consumer>).
+Change to this directory and perform the following.
+
 ```shell
-cd consumer-code
+cd consumer
 ./gradlew test
 ```
 
@@ -227,24 +230,24 @@ So we have a contract that should be fulfilled
 
 To pull in this contract for the Producer a bit of configuration is required as it we need to specify that we are using the pact broker to for our contracts.
 
-The Pact Broker plugin (`classpath "org.springframework.cloud:spring-cloud-contract-pact:2.1.2.RELEASE"`) is required in the buildscript
+The Pact Broker plugin (`classpath "org.springframework.cloud:spring-cloud-contract-pact:2.2.1.RELEASE"`) is required in the buildscript
+
 ```groovy
 buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.7.RELEASE"
-        classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.1.2.RELEASE"
-        classpath "org.springframework.cloud:spring-cloud-contract-pact:2.1.2.RELEASE"
+    classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.1.RELEASE'
+        classpath 'org.springframework.cloud:spring-cloud-contract-pact:2.2.1.RELEASE'
     }
 }
 ```
 
 We also need to configure where the pact broker lives
+
 ```groovy
 contracts {
-	baseClassForTests = "com.jpgough.apiworkshop.contract.ExistingBase"
+	baseClassForTests = "com.jpgough.apiworkshop.contract.ContractsExistingBase"
 //    When + is passed, a latest tag will be applied when fetching pacts
     contractDependency {
         stringNotation = "com.jpgough.apiworkshop:todo-api-producer-pact:+"
@@ -262,6 +265,6 @@ Run `gradle test` and you should now be pulling in the contract and have a faili
 
 What is the contract asking for? The task is to edit the TODO controller and fulfil the PUT request to edit a TODO and return a 204.
 
+## Where can I find more
 
-### Where can I find more?
 You can check out lots of [spring cloud contracts](https://spring.io/projects/spring-cloud-contract#overview) examples at the github page: https://github.com/spring-cloud-samples/spring-cloud-contract-samples
