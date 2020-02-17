@@ -7,7 +7,6 @@ The tasks that will be the following
 
 * Download Java SDK
 * Install one of the following IDE's, Intellij/Eclipse, IntelliJ is recommended
-* Download Docker and pull in some images
 * Download the baseline project for the labs
 
 ## Downloading Java SDK
@@ -78,6 +77,18 @@ Follow the wizard to bring in the project and resolve the dependencies.
 ![Eclipse Project Import](../01-spring-boot/01B2-eclipse.png)
 
 ### Verify it works
+
+You will need to make some changes to the build.gradle file to allow it to work from the beginning.
+The setup for Spring Cloud Contracts which will be discussed in [02-contracts](02-contracts/README.md) needs a little change.
+
+In the build.gradle file overwrite the small sction called `contracts` to the following:
+
+```groovy
+contracts {
+  testFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
+  failOnNoContracts = false
+}
+```
 
 Now simply run `gradlew test` from the command line to verify that the base project works as expected.
 
