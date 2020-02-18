@@ -8,46 +8,9 @@ We are going to create a project using Spring Boot. Take a moment to think about
 
 Our workshop starts with a empty folder. We are going to use [SpringInitalizr](https://start.spring.io) to create our project and get started.
 
-### Step 1 - Generating the Project
-If you've already completed the [pre-requisites](../prerequisites/README.md) you can skip forward to Step 3.
+If you have not completed the [pre-requisites](../prerequisites/README.md) please start here.
 
-* Visit [https://start.spring.io](https://start.spring.io) to create a new project
-* Choose a gradle project for the lab
-* We will use Java
-* Select a **2.1.x** version of Spring Boot
-* Create some project metadata that makes sense
-* Add in the required dependencies, to get us started we will add
-   * Cloud Contract Verifier (which we will use in Lab 2)
-   * The Spring Web dependency, which is required for tomcat to be embedded
-
-![Spring Initializr](01A-initializr-config.png)
-
-Generating the project will download the dependencies and structure of a working Spring Application.
-
-Alternatively, use this [link](https://start.spring.io/starter.zip?type=gradle-project&language=java&bootVersion=2.1.9.RELEASE&baseDir=apiworkshop&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=starter%20project%20for%20api%20workshop&packageName=com.jpgough.apiworkshop&packaging=jar&javaVersion=11&dependencies=web&dependencies=cloud-contract-verifier) to directly download the base project.
-
-
-### Step 2 - Importing the Project
-
-#### Intellij
-
-Import the project into your IDE by opening the the `build.gradle` file as a project.
-
-![Intellij Project Import](01B-sample-import.png)
-
-On hitting OK the project will most likely download the internet (or at least all the required dependencies). 
-Once this has completed your baseline project is ready. 
-You can try running the tests to verify that your project builds and the context loads correctly.
-
-#### Eclipse
-
-File `->` Import `->` Gradle `->` Existing Gradle Project.    
-Follow the wizard to bring in the project and resolve the dependencies.
- 
-
-![Eclipse Project Import](01B2-eclipse.png)
-
-### Step 3 - Creating our First Controller
+### Step 1 - Creating our First Controller
 
 In the project we will create a small REST controller. 
 Spring boot works by scanning classes and looking for annotations it recognises.
@@ -77,7 +40,7 @@ In a couple of seconds you should be able to visit [http://localhost:8080/hello]
 
 ![Hello World](01C-hello-world.png)
 
-### Step 4 - Building a (slightly) more advanced API
+### Step 2 - Building a (slightly) more advanced API
 
 We will create a very simple todo list application.
 The application doesn't need to persist any data, though if you wanted to continue this exercise afterwards that is one extension point.
@@ -100,7 +63,7 @@ This will allow you to test independently.
 You can test your API from your IDE or install a free tool like [Restlet](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en) 
 into your browser. 
 
-### Step 5 - Deploying with Docker
+### Step 3 (Optional) - Deploying with Docker
 
 In order to build a docker container we first need to test running the application as a jar locally. 
 There are two options for building locally:
@@ -150,7 +113,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 If you need to restart/stop the container run `docker kill <container ID>`.
 
-### Step 6 (Optional) - Building with Docker
+### Step 4 (Optional) - Building with Docker
 
 One limitation with our above solution is that we have to remember to build both with gradle and then with docker. 
 This is both easy to forget and makes creating a build pipeline that bit more complex.
