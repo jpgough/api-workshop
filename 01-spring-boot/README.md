@@ -8,7 +8,7 @@ We are going to create a project using Spring Boot. Take a moment to think about
 
 Our workshop starts with a empty folder. We are going to use [SpringInitalizr](https://start.spring.io) to create our project and get started.
 
-If you have not completed the [pre-requisites](../prerequisites/README.md) please start here.
+If you have not completed the [pre-requisites](../prerequisites/README.md) please complete these steps first.
 
 ### Step 1 - Creating our First Controller
 
