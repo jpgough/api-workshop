@@ -8,9 +8,9 @@ We are going to create a project using Spring Boot. Take a moment to think about
 
 Our workshop starts with a empty folder. We are going to use [SpringInitalizr](<https://start.spring.io>) to create our project and get started.
 
-## Step 1 - Creating our First Controller
-
 If you have not completed the [pre-requisites](../prerequisites/README.md) please complete these steps first.
+
+## Step 1 - Creating our First Controller
 
 In the project we will create a small REST controller.
 Spring boot works by scanning classes and looking for annotations it recognises.
