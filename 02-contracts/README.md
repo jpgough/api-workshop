@@ -1,6 +1,6 @@
 # Lab 2 Contracts
 
-In lab 1 we created an API for tracking a todo list. 
+In lab 1 we created an API for tracking a todo list.
 One thing you may have felt whilst writing the code was the requirement to do manual testing.
 In this lab we will explore writing Contract Driven Tests for our todo list application.
 
@@ -21,12 +21,12 @@ This should appear in the buildscript as follows, if it does not then copy the c
 
 ```groovy
 buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.1.RELEASE'
-    }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.1.RELEASE'
+  }
 }
 apply plugin: 'spring-cloud-contract'
 ```
@@ -37,8 +37,8 @@ This should appear in your dependencies as follows
 
 ```groovy
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -63,7 +63,7 @@ org.springframework.cloud.contract.spec.Contract.make {
     }
     response {
         status 200
-        body([])
+        body('\\[\\]')
     }
 }
 ```
@@ -109,14 +109,14 @@ The final step is to return to our `build.gradle` and point to our base class fo
 
 ```groovy
 contracts {
-	baseClassForTests = 'com.jpgough.apiworkshop.ContractsBase'
-	// fully qualified name to a class that will be the base class for your generated test classes
+  baseClassForTests = 'com.jpgough.apiworkshop.ContractsBase'
+  // fully qualified name to a class that will be the base class for your generated test classes
 }
 ```
 
 ## Step 4 - Running the Tests and Checking the Output
 
-The final step is to run the tests and view the results. 
+The final step is to run the tests and view the results.
 We can do this by running `gradle test` and if everything works we should see a successful build.
 In the directory `build/reports/tests/test` there is an `index.html` file that can be loaded in a browser to view the results of our tests.
 
@@ -132,24 +132,23 @@ In the directory `build/generated-test-sources` we can find the test that was ge
 ```java
 public class ContractVerifierTest extends ContractsBase {
 
-	@Test
-	public void validate_todo_list_is_empty() throws Exception {
-		// given:
-			MockMvcRequestSpecification request = given();
+  @Test
+  public void validate_todo_list_is_empty() throws Exception {
+    // given:
+    MockMvcRequestSpecification request = given();
+    // when:
+    ResponseOptions response = given().spec(request)
+    .get("/todo");
 
-		// when:
-			ResponseOptions response = given().spec(request)
-					.get("/todo");
-
-		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-	}
+    // then:
+    assertThat(response.statusCode()).isEqualTo(200);
+    // and:
+    DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
+  }
 }
 ```
 
-It is worth keeping an eye on this folder as we go through the next part of the workshop. 
+It is worth keeping an eye on this folder as we go through the next part of the workshop.
 If a test doesn't work as expected you may have to take a look in this file to check the test is as expected and it is sometimes worth running `gradle clean` to clear out the folder to force regenerating the test.
 You can also execute the tests from this directory in your IDE.
 
@@ -222,7 +221,7 @@ cd consumer
 ./gradlew test
 ```
 
-This will bring up a Pact broker and push a contract. You can now see this by visiting http://localhost:8085
+This will bring up a Pact broker and push a contract. You can now see this by visiting <http://localhost:8085>
 
 ![Pact Broker Image](images/pact_broker.png)
 
@@ -247,7 +246,7 @@ We also need to configure where the pact broker lives
 
 ```groovy
 contracts {
-	baseClassForTests = "com.jpgough.apiworkshop.contract.ContractsExistingBase"
+    baseClassForTests = "com.jpgough.apiworkshop.contract.ContractsExistingBase"
 //    When + is passed, a latest tag will be applied when fetching pacts
     contractDependency {
         stringNotation = "com.jpgough.apiworkshop:todo-api-producer-pact:+"
@@ -267,4 +266,4 @@ What is the contract asking for? The task is to edit the TODO controller and ful
 
 ## Where can I find more
 
-You can check out lots of [spring cloud contracts](https://spring.io/projects/spring-cloud-contract#overview) examples at the github page: https://github.com/spring-cloud-samples/spring-cloud-contract-samples
+You can check out lots of [spring cloud contracts](<https://spring.io/projects/spring-cloud-contract#overview>) examples at the github page: <https://github.com/spring-cloud-samples/spring-cloud-contract-samples>
