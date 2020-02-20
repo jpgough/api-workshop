@@ -26,6 +26,8 @@ The next stage is to install an IDE
 
 ### IntelliJ - Recommended
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `It is worth noting that Gradle 6 has been released and does not work well with older version of Intellij. To avoid any problems please upgrade to the latest`
+
 * Visit https://www.jetbrains.com/idea/download/#section=mac
 * Select the Ultimate or Community Edition and download. Ultimate has a 30 day trial which is nice to use if you have a free trial available. Community Edition is missing a few features from Ultimate but none that matter for this workshop and is completely free
   * Windows - Run the downloaded EXE file
