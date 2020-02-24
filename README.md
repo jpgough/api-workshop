@@ -10,7 +10,7 @@ The workshop is a mixture of hands on exercises and taught mini sessions to intr
 
 There are some steps that should be followed before attending the workshop which include
 * IDE installed (Intellij/Eclipse) 
-* Docker setup
+* Optional Docker setup
 
 Please visit the [prerequisite](prerequisites/README.md) page to perform these steps
 
@@ -29,7 +29,7 @@ Join the Chatroom [![Gitter](https://badges.gitter.im/jpgough-api-workshop/commu
 
 | Theme                         | Introduction Talk                                     |  Demo                               |
 | ----------------------------- | ----------------------------------------------------- | ----------------------------------- |
-| API Gateways                  | [API Gateways](/presentations/05-gateways.pdf)        | [Gateways](/05-gateways/README.md)  |
+| API Recommendations and API Gateways                  | [API Recommendations and API Gateways](/presentations/05-gateways.pdf)        | [Gateways](/05-gateways/README.md)  |
 
 
 ## Sample Solutions
