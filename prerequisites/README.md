@@ -26,6 +26,8 @@ The next stage is to install an IDE
 
 ### IntelliJ - Recommended
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `It is worth noting that Gradle 6 has been released and does not work well with older version of Intellij. To avoid any problems please upgrade to the latest`
+
 * Visit https://www.jetbrains.com/idea/download/#section=mac
 * Select the Ultimate or Community Edition and download. Ultimate has a 30 day trial which is nice to use if you have a free trial available. Community Edition is missing a few features from Ultimate but none that matter for this workshop and is completely free
   * Windows - Run the downloaded EXE file
@@ -53,7 +55,7 @@ In order to save time during the workshop it would useful for you to download th
 
 ### Download SpringBoot project
 
-The following URL is pre-configured to take you directly to https://start.spring.io and download a zip file containing the project. Just open your browser and enter the URL, the download should begin.
+The following URL is pre-configured to take you directly to https://start.spring.io and set the required dependencies to Spring Web and Spring Contract Verifier. Open your browser and enter the URL, and then click on "Generate" to download a zip file containing the project.
 
 `https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.2.4.RELEASE&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=Starter%20api%20workshop%20project&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
 
