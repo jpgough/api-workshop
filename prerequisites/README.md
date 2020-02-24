@@ -68,7 +68,7 @@ Import the project into IntelliJ by opening the the `build.gradle` file as a pro
 ![Intellij Project Import](../01-spring-boot/01B-sample-import.png)
 
 On hitting OK the project will most likely download the internet (or at least all the required dependencies).
-Once this has completed your baseline project is ready. 
+Once this has completed your baseline project is ready.
 You can try running the tests to verify that your project builds and the context loads correctly.
 
 ### Eclipse
