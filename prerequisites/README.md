@@ -55,7 +55,7 @@ In order to save time during the workshop it would useful for you to download th
 
 ### Download SpringBoot project
 
-The following URL is pre-configured to take you directly to https://start.spring.io and download a zip file containing the project. Just open your browser and enter the URL, the download should begin.
+The following URL is pre-configured to take you directly to https://start.spring.io and set the required dependencies to Spring Web and Spring Contract Verifier. Open your browser and enter the URL, and then click on "Generate" to download a zip file containing the project.
 
 `https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.2.4.RELEASE&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=Starter%20api%20workshop%20project&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
 
