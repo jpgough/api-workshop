@@ -57,9 +57,30 @@ In order to save time during the workshop it would useful for you to download th
 
 The following URL is pre-configured to take you directly to https://start.spring.io and set the required dependencies to Spring Web and Spring Contract Verifier. Open your browser and enter the URL, and then click on "Generate" to download a zip file containing the project.
 
-`https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.2.8.RELEASE&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=Starter%20api%20workshop%20project&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
+`https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.7.0&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=Starter%20api%20workshop%20project&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
 
 Unzip the downloaded archive to a location on your file system.
+
+### Temporary Build Instructions
+
+Whilst testing the setup of this lab I have [found a bug](https://github.com/spring-io/start.spring.io/issues/938) in Spring Initializr.
+To fix this issue, you will need to replace the following in the build.gradle:
+
+```
+tasks.named('contracts') {
+	testFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
+	failOnNoContracts = false
+}
+
+```
+
+with
+
+```
+contracts {
+	testFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
+}
+```
 
 ### Import project into you IDE
 
