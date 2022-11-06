@@ -63,92 +63,84 @@ This will allow you to test independently.
 You can test your API from your IDE or install a free tool like [Restlet](<https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en>)
 into your browser.
 
-### Step 3 (Optional) - Deploying with Docker
+### Step 3 (Optional) - Running as a Docker container
 
-In order to build a docker container we first need to test running the application as a jar locally.
-There are two options for building locally:
+In order to build a docker container we first need to test running the application as a JAR locally.
 
-1. run `gradle build` from the command line (requires gradle to be installed)
-1. run `gradle build` from the IDE
+To build a JAR file for your API run `mvnw package` from the command line. As a default it will be created the following location: `target/apiworkshop-0.0.1-SNAPSHOT.jar`
 
-The following jar file should now be created: `build/libs/apiworkshop-0.0.1-SNAPSHOT.jar`
-You can run this jar using `java -jar build/libs/apiworkshop-0.0.1-SNAPSHOT.jar` the Spring Boot gradle plugin will have packaged everything for you to run your REST API.
-The application will now be running and testable on <http://localhost:8080/hello>.
+You can then run this JAR using: `java -jar target/apiworkshop-0.0.1-SNAPSHOT.jar`
+
+As this is a Spring Boot application the JAR will have been packaged with everything your app needs to start your REST API.
+
+The application will now be running and testable on <http://localhost:8080/todos>.
 
 The following `Dockerfile` can now be created in the root of the project.
 
 ```docker
-FROM adoptopenjdk:11-jre-hotspot
+FROM eclipse-temurin:11
 RUN mkdir /opt/app
-ADD build/libs/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
-EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "/opt/app/app.jar" ]
+COPY target/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
+CMD ["java", "-jar", "/opt/app/app.jar"]
 ```
 
 The docker image can now be built with the following command:
 
 `docker build -t apiworkshop:v1 .`
 
-Once the build is created our image will be visible by running `docker images`.
+Once complete you can check the built image using `docker images`.
 
 ```shell
 $ docker images
-REPOSITORY                                                TAG                 IMAGE ID            CREATED             SIZE
-apiworkshop                                               v1                  38a02d5fb614        5 minutes ago       622MB
+REPOSITORY                                            TAG                       IMAGE ID       CREATED         SIZE
+apiworkshop                                           v1                        0a6ffb029f3c   2 minutes ago   467MB
 ```
 
-We can now run our image using the following docker command
+You can now run a container based on the image using `docker run -p 8080:8080 -t apiworkshop:v1`
 
-`docker run -p 8080:8080 -t apiworkshop:v1`
+> Note the -p command sets up the port mapping.
+> The app hosted at <http://localhost:8080/hello> will now be the docker version of your API.
 
-Note the -p command sets up the port mapping. <http://localhost:8080/hello> - will now be the docker hosted application.
-We can view our running docker containers using the command `docker ps`
+You can view the running docker containers using `docker ps`
 
 ```shell
 $ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                    NAMES
-46c5781e269f        apiworkshop:v1      "sh -c 'java $JAVA_O…"   About a minute ago   Up About a minute   0.0.0.0:8081->8080/tcp   peaceful_stonebraker
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                    NAMES
+c917edd0e525   apiworkshop:v1   "java -jar /opt/app/…"   55 seconds ago   Up 55 seconds   0.0.0.0:8080->8080/tcp   frosty_colden
 ```
 
 If you need to restart/stop the container run `docker kill <container ID>`.
 
 ### Step 4 (Optional) - Building with Docker
 
-One limitation with our above solution is that we have to remember to build both with gradle and then with docker.
+One limitation with our above solution is that we have to remember to build both with Maven and then with Docker.
 This is both easy to forget and makes creating a build pipeline that bit more complex.
 
-There is a solution, and that is that we modify the `Dockerfile` to both build the java code and create the runnable image.
+There is a solution and that is to utilise a Docker [multi-stage build](https://docs.docker.com/build/building/multi-stage/). This will allow us to use the `Dockerfile` to define how to both build the API and create a runnable image.
+
+Apply the following updates to the `Dockerfile`:
 
 ```docker
-FROM gradle:jdk11 as builder
+FROM eclipse-temurin:17 as build
 
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build
-```
+COPY .mvn .mvn
+COPY mvnw .
+COPY pom.xml .
+COPY src src
 
-If we add the above to the beginning of our existing Dockerfile it will have the effect of creating a _Multistage build_ that is we will use the result of one stage in the stage that packages up the jar for running.
-There is a nice blog walking through these steps [here](http://paulbakker.io/java/docker-gradle-multistage/) along with an article that provides a decent overview of [best practices](https://blog.docker.com/2019/07/intro-guide-to-dockerfile-best-practices/).
-The above will now pull in gradle and build our project into the `/home/gradle/src`.
+RUN ./mvnw package
 
-We now have to include the output from the gradle build into our packaging stage of the java image.
-We can replace the `ADD` command with a `COPY` to move the jar from the gradle build area into our image.
-The complete Dockerfile would look like this.
+FROM eclipse-temurin:17
 
-```docker
-FROM gradle:jdk11 as builder
-
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build
-
-FROM adoptopenjdk:11-jre-hotspot
 RUN mkdir /opt/app
-COPY --from=builder /home/gradle/src/build/libs/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
-EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "/opt/app/app.jar" ]
+
+COPY --from=build target/apiworkshop-0.0.1-SNAPSHOT.jar /opt/app/app.jar
+
+ENTRYPOINT ["java", "-jar", "/opt/app/app.jar"]
 ```
 
-We can now run the image as we did in step 5, only this time when we run `docker build` it will both build the jar and create the runnable docker image.
-There are also no magic environment variables or steps requiring a specific setup on a machine.
+The `Dockerfile` now consists of 2 stages represented by each of the `FROM` commands. There is an explicitly labelled `build` stage followed by an implicit run stage.
+
+We can now run the image as we did in step 5, only this time when we run `docker build` it will both build the JAR and create the runnable docker image.
+
 Containerizing builds provides a reproducible way of creating a docker image.

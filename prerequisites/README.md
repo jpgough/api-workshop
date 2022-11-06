@@ -5,86 +5,39 @@ You should do these tasks before the workshop as some of the files are large.
 
 The tasks that will be the following
 
-* Download Java SDK
+* Install Java
 * Install one of the following IDE's, Intellij/Eclipse, IntelliJ is recommended
 * Download the baseline project for the labs
 
-## Downloading Java SDK
+## Install Java
 
-* Visit https://adoptopenjdk.net
+* Visit https://adoptium.net
+* Select the correct version of JDK 17 LTS for your OS (i.e. MacOS, Windows) and download.
+* More details on your installation options for various platforms can be found [here](https://adoptium.net/en-GB/installation).
 
-* Select Java version 11, Hotspot and then Download.
-   ![Install Java image](images/java_install.png)
+## Install an IDE
 
-* Next follow the steps to install the package you have downloaded.
-  * Windows - [Install page](https://adoptopenjdk.net/installation.html?variant=openjdk11&jvmVariant=hotspot#windows-msi)
-  * Mac - [Install page](https://adoptopenjdk.net/installation.html?variant=openjdk11&jvmVariant=hotspot#macos-pkg)
+We recommend running thw workshop using IntelliJ IDEA.
 
-## Install and IDE
+Download and install here: https://www.jetbrains.com/idea/ 
 
-The next stage is to install an IDE
+If not already, please make sure you are using an up-to-date version to help avoid any potential issues.
 
-### IntelliJ - Recommended
+## Starter project for the labs
 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `It is worth noting that Gradle 6 has been released and does not work well with older version of Intellij. To avoid any problems please upgrade to the latest`
-
-* Visit https://www.jetbrains.com/idea/download/#section=mac
-* Select the Ultimate or Community Edition and download. Ultimate has a 30 day trial which is nice to use if you have a free trial available. Community Edition is missing a few features from Ultimate but none that matter for this workshop and is completely free
-  * Windows - Run the downloaded EXE file
-  * Mac - Run the downloaded PKG file
-* Configure the SDK
-  * Open intelliJ and select File -> Project Structure
-  * Notice the **No SDK** which can be seen in the image
-  ![Setup the SDK](images/no_sdk.png)
-  * Select New -> JDK
-  * Navigate to your installed Java SDK
-    * Windows - c:\Program Files\AdoptOpenJDK\\***version-downloaded***
-    * Mac - /Library/Java/JavaVirtualMachines/***version-downloaded***/Contents/Home
-
-### Eclipse
-
-* Visit https://www.eclipse.org/downloads/packages/
-* Find the "Eclipse IDE for Java Developers" and download the version for you operating system
-![Eclipse download](images/eclipse_install.png)
-  * Windows - Unzip the downloaded zip folder and run the eclipse.exe file
-  * Mac - Open the DMG file and eclipse will install
-
-## Baseline project for the labs
-
-In order to save time during the workshop it would useful for you to download the baseline SpringBoot project and cache some of dependencies that will be needed for the labs.
+In order to save time during the workshop it would useful for you to download the starter SpringBoot project and cache some of dependencies that will be needed for the labs.
 
 ### Download SpringBoot project
 
 The following URL is pre-configured to take you directly to https://start.spring.io and set the required dependencies to Spring Web and Spring Contract Verifier. Open your browser and enter the URL, and then click on "Generate" to download a zip file containing the project.
 
-`https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.7.0&packaging=jar&jvmVersion=11&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=Starter%20api%20workshop%20project&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier`
+<https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.7.5&packaging=jar&jvmVersion=17&groupId=com.jpgough&artifactId=apiworkshop&name=apiworkshop&description=Starter%20api%20workshop%20project&packageName=com.jpgough.apiworkshop&dependencies=web,cloud-contract-verifier>
 
 Unzip the downloaded archive to a location on your file system.
 
-### Temporary Build Instructions
+### Import project into your IDE
 
-Whilst testing the setup of this lab I have [found a bug](https://github.com/spring-io/start.spring.io/issues/938) in Spring Initializr.
-To fix this issue, you will need to replace the following in the build.gradle:
-
-```
-tasks.named('contracts') {
-	testFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
-	failOnNoContracts = false
-}
-
-```
-
-with
-
-```
-contracts {
-	testFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
-}
-```
-
-### Import project into you IDE
-
-Import the project into IntelliJ by opening the the `build.gradle` file as a project.
+Import the project into IntelliJ by opening the the `pom.xml` file as a project.
 
 ![Intellij Project Import](../01-spring-boot/01B-sample-import.png)
 
@@ -92,28 +45,9 @@ On hitting OK the project will most likely download the internet (or at least al
 Once this has completed your baseline project is ready. 
 You can try running the tests to verify that your project builds and the context loads correctly.
 
-### Eclipse
-
-File `->` Import `->` Gradle `->` Existing Gradle Project.
-Follow the wizard to bring in the project and resolve the dependencies.
-
-![Eclipse Project Import](../01-spring-boot/01B2-eclipse.png)
-
 ### Verify it works
 
-You will need to make some changes to the build.gradle file to allow it to work from the beginning.
-The setup for Spring Cloud Contracts which will be discussed in [02-contracts](02-contracts/README.md) needs a little change.
-
-In the build.gradle file overwrite the small sction called `contracts` to the following:
-
-```groovy
-contracts {
-  testFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
-  failOnNoContracts = false
-}
-```
-
-Now simply run `gradlew test` from the command line to verify that the base project works as expected.
+Using the Maven Wrapper run `mvnw verify` from the command line to verify that the base project works as expected.
 
 ## Optional
 
