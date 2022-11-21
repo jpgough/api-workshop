@@ -39,11 +39,10 @@ Unzip the downloaded archive to a location on your file system.
 
 Import the project into IntelliJ by opening the the `pom.xml` file as a project.
 
-![Intellij Project Import](../01-spring-boot/01B-sample-import.png)
+![Intellij Project Import](images/project-import.png)
 
 On hitting OK the project will most likely download the internet (or at least all the required dependencies).
-Once this has completed your baseline project is ready. 
-You can try running the tests to verify that your project builds and the context loads correctly.
+Once this has completed your baseline project is ready.
 
 ### Verify it works
 
