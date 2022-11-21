@@ -87,8 +87,8 @@ Now we have our contract we need to provide some setup to run this.
 
 ## Step 3 - Creating the Basis for the Test
 
-We need to setup a class that knows our `TODO` controller is the subject under test.
-Let this sink in and how it makes sense. We write a contract to define what interactions should happen. However, we need to configure the parts of the application that are going to verify the pacts
+We need to setup a class that knows our `TodoController` is the subject under test.
+Let this sink in and how it makes sense. We write a contract to define what interactions should happen. However, we need to configure the parts of the application that are going to verify the contracts.
 
 Lets do this by creating a class called `ContractsBase.java`, which we prepare to be the basis for running our contracts.
 
@@ -115,9 +115,9 @@ public abstract class ContractsBase {
 You may have noticed a couple of things, this is an `abstract class` and only contains a `@BeforeEach` annotation and no actual tests.
 The tests are going to be generated from the contracts we have specified and the generated test will extend this base class.
 
-There is no reason not to use @SpringBootTest instead of using RestAssured to configure and launch your controller under test.
+As an alternative you could `@SpringBootTest` rather than `RestAssured` to configure and launch your controller under test.
 
-The final step is to conifgure the `spring-cloud-contract-maven-plugin` plugin in the `pom.xml` to reference the new base class for testing
+The final step is to configure the `spring-cloud-contract-maven-plugin` plugin in the `pom.xml` to reference the new base class for testing.
 
 ```xml
 <plugin>
@@ -171,7 +171,7 @@ It is worth keeping an eye on this folder as we go through the next part of the 
 If a test doesn't work as expected you may have to take a look in this file to check the test is as expected and it is sometimes worth running `mvnw clean` to clear out the folder to force regenerating the test.
 You can also execute the tests from this directory in your IDE.
 
-It is also worth noting that the tests use [Rest-assured](http://rest-assured.io) behind the scenes which is good library for testing APIs.
+It is also worth noting that the tests use [REST-assured](http://rest-assured.io) behind the scenes which is good library for testing APIs.
 
 ## Step 5 - Adding More Tests
 
@@ -195,17 +195,14 @@ public abstract class ContractsExistingBase {
 
     private TodosController todoController = new TodosController();
 
-    @Before
+    @BeforeEach
     public void setup() {
         RestAssuredMockMvc.standaloneSetup(this.todoController);
-        todoController.createNewTodo(new Todo("Mkae the bed")); // Yes this is on purpose ;) Check Step - 7
+        todoController.createNewTodo(new Todo("Make the bed"));
     }
 
 }
 ```
-
-It is possible to setup mappings to pick up different base classes for test types.
-The documentation for this can be found [here](https://cloud.spring.io/spring-cloud-contract/reference/htmlsingle/#how-to-protocol-convention-producer-with-contracts-stored-locally).
 
 We will need to create two packages in our contracts to hold contracts for tests that have no pre-created todos and tests that do have pre-created todos
 
@@ -213,7 +210,7 @@ We will need to create two packages in our contracts to hold contracts for tests
 
 As we now have more than one base class for our contract tests we'll need to configure the `spring-cloud-contract-maven-plugin` in the Maven `pom.xml` to specify the mappings between contracts and base class:
 
-```gradle
+```xml
 <plugin>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-contract-maven-plugin</artifactId>
@@ -235,9 +232,11 @@ As we now have more than one base class for our contract tests we'll need to con
 </plugin>
 ```
 
+The documentation for this can be found [here](https://cloud.spring.io/spring-cloud-contract/reference/htmlsingle/#how-to-protocol-convention-producer-with-contracts-stored-locally).
+
 The scenarios we can now test include:
 
-- GET all todos and verify 
+- GET all todos and verify
 - GET a specific ToDo and verify the description and a status code
 - DELETE a specific ToDo
 
