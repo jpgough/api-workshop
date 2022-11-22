@@ -49,7 +49,7 @@ There are various annotations that can be used to customise and add further docu
 * `@OpenAPIDefinition` - can sit at the top of the controller to give more information on the overall controller.
 * `@Operation` - can be used on the methods to provide more documentation
 
-Experiment with those two annotations and see if you can produce a page that looks like the following.
+Experiment with those two annotations (and any others you discover) to improve the documentation for your API and see if you can produce a page that looks similar the following.
 
 ![More Documentation](03D-more-docs.png)
 
