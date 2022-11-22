@@ -61,31 +61,34 @@ An advantage of having the OpenAPI specification available is that we can now qu
 
 The JSON document found at <http://localhost:8080/v3/api-docs> represents our current API specification.
 
-First, download [Swagger Codegen](https://swagger.io/tools/swagger-codegen/)
+First, download [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator)
 
-You can download the CLI as a JAR file directly from Maven Central as follows:
-
-```sh
-wget https://search.maven.org/remotecontent?filepath=io/swagger/codegen/v3/swagger-codegen-cli/3.0.36/swagger-codegen-cli-3.0.36.jar -O swagger-codegen-cli.jar
-
-java -jar swagger-codegen-cli.jar --help
-```
-
-After you have downloaded the `swagger-codegen` CLI run the following command against your API specification.
+You have various options for [downloading and installing the tool](https://github.com/OpenAPITools/openapi-generator#1---installation).
+As we're Java devs we'll use the [JAR approach](https://github.com/OpenAPITools/openapi-generator#13---download-jar) to download the CLI as a JAR file directly from Maven Central as follows:
 
 ```sh
-java -jar swagger-codegen-cli.jar generate \
-  -i http://localhost:8080/v3/api-docs\
-  -l java \
-  -o api-client
+wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.2.1/openapi-generator-cli-6.2.1.jar -O openapi-generator-cli.jar
+
+java -jar openapi-generator-cli.jar help 
 ```
 
-This will generate a Java client that you can use to experiment with calling your API.
+After you have downloaded the `openapi-generator` CLI run the following command against your API specification.
 
-There are many generators that are available, though you have to be careful that if you use one you do check the code generated.
+```sh
+java -jar openapi-generator-cli.jar generate \
+     -i http://localhost:8080/v3/api-docs \
+     -g java \
+     -o todos-client
+```
+
+This will generate a project that implements a client for your ToDo API in Java. Open the project in your IDE and explore the code that's been generated.
+
+There are various generators available, though you have to be careful that if you use one you do check the code generated.
 Code generation has the potential to inject malicious code if it is not from a trusted source.
 
-There are also some generators that build nicer Spring Boot projects [here](https://www.baeldung.com/spring-boot-rest-client-swagger-codegen).
+### Step 5 - Interact with your API using the client
+
+Try creating a new standalone Java program that interacts with your ToDo API using the client. Checkout the `README.md` for the generated client for full details of how to use it.
 
 Build a small Java command line app that operates with your Todo API.
 You can create a new project for this purpose in IntelliJ via the File -> New -> Project option.
