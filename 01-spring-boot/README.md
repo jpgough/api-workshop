@@ -19,15 +19,13 @@ Based on these annotations it will be opinionated and choose what it thinks the 
 Usually controllers would live in their own package, you should create the `TodosController.java` in your project.
 
 ```java
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TodosController {
 
-    @RequestMapping("/hello")
-    @ResponseBody
+    @GetMapping("/hello")
     public String helloWorld() {
         return "Hello World";
     }
