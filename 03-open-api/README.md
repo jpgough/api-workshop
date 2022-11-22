@@ -40,22 +40,22 @@ Now take some time to explore the Swagger UI.
 
 <http://localhost:8080/swagger-ui.html>
 
-![Tidy Swagger UI](03C-tidy-swagger.png)
+![Swagger UI](03B-swagger.png)
 
 ### Step 3 - Enhancing the OpenAPI spec
 
 There are various annotations that can be used to customise and add further documentation to our code.
 
-`@OpenAPIDefinition` - can sit at the top of the controller to give more information on the overall controller.
-`@Operation` - can be used on the methods to provide more documentation
+* `@OpenAPIDefinition` - can sit at the top of the controller to give more information on the overall controller.
+* `@Operation` - can be used on the methods to provide more documentation
 
 Experiment with those two annotations and see if you can produce a page that looks like the following.
 
 ![More Documentation](03D-more-docs.png)
 
-You can find full docs related to the full range annotations available to document your APIs [here](https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations#quick-annotation-overview).
+You can find the docs related to the full range annotations available to document your APIs [here](https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations#quick-annotation-overview).
 
-### Step 4 Generate a Client
+### Step 4 - Generate a Client
 
 An advantage of having the OpenAPI specification available is that we can now quite easily generating client code to call our API.
 
@@ -88,3 +88,4 @@ Code generation has the potential to inject malicious code if it is not from a t
 There are also some generators that build nicer Spring Boot projects [here](https://www.baeldung.com/spring-boot-rest-client-swagger-codegen).
 
 Build a small Java command line app that operates with your Todo API.
+You can create a new project for this purpose in IntelliJ via the File -> New -> Project option.
