@@ -53,8 +53,8 @@ Here are the operations that we will look to implement:
 
 ### Design considerations
 
-* You will need a POJO to represent the task (which contains an id and a description)
-* You will need to explore the `@PathVariable` annotation
+* You will need a POJO to represent the task (which contains an id and a description).
+* You will need to explore the `@PathVariable` and `@RequestParam` annotations.
 * You will probably want to factor out the Tasks features from the actual controller.
 This will allow you to test independently.
 
