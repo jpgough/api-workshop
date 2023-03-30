@@ -1,15 +1,16 @@
 # API Workshop
 
 In this workshop we will explore building APIs using Spring Boot.
-Building APIs using Spring and other tooling can be done by clicking a couple of buttons. 
+Building APIs using Spring and other tooling can be done by clicking a couple of buttons.
 
 However as with any process (regardless of speed) we want to ensure quality in the product we are building.
 The workshop is a mixture of hands on exercises and taught mini sessions to introduce the concepts behind building quality APIs.
 
-## Prerequisites 
+## Prerequisites
 
-There are some steps that should be followed before attending the workshop which include
-* IDE installed (Intellij/Eclipse) 
+There are some steps that should be followed before attending the workshop which include:
+
+* IDE installed (e.g. IntelliJ IDEA)
 * Optional Docker setup
 
 Please visit the [prerequisite](prerequisites/README.md) page to perform these steps

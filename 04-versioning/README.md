@@ -4,118 +4,139 @@ In Lab 3 we explored API specifications and generating code against those specif
 Unlike when we use a binary dependency there is the opportunity for APIs to evolve in a decoupled way.
 The issue with this is the possibility of software dependencies unexpectedly breaking.
 
-Versioning can help us to prevent issues, in this lab we will explore how changes to our API either retain or break backwards compatibility.
+Versioning can help us to prevent issues, in this lab we will explore how changes to our API either maintain or break backwards compatibility.
 
 ## Step 1
 
-Add a new dependency to your java project. This dependency pulls in a Java library from the project <http://deepoove.com/swagger-diff/> which can be used to compare swagger files.
+First let's create a simple Java program that will perform a diff between two versions of an OpenAPI specification and inform us of any changes between them.
 
-```groovy
-dependencies {
-//    Swagger diff
-    compile group: 'com.deepoove', name: 'swagger-diff', version: '1.2.1'
+You can do this easily in IntelliJ via the File -> New -> Project option.
+Give your new program a name (e.g. `openapi-differ`), select Maven as the build system and Java 17.
 
-    ...
-}
+Open the project and add the following new dependency to the Maven POM.
+
+```xml
+<dependency>
+  <groupId>org.openapitools.openapidiff</groupId>
+  <artifactId>openapi-diff-core</artifactId>
+  <version>2.0.1</version>
+</dependency>
 ```
 
-Create a new Java class to use the Swagger diff. Create this in the root of your Java application and call it JavaCompare. e.g.
+This dependency pulls in a Java library from the project <https://github.com/OpenAPITools/openapi-diff> which can be used to compare two versions of an OpenAPI specification.
 
-![Swagger compare class image](swaggerCompareClass.png)
+In the `Main` class of the project use the `openapi-diff` library to write a simple implementation that will compare 2 OpenAPI specs and create a report of the changes.
 
-Add the code to the newly created class:
+A basic solution may look something like this:
 
 ```java
-import com.deepoove.swagger.diff.SwaggerDiff;
-import com.deepoove.swagger.diff.output.HtmlRender;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Paths;
-
-public class JavaCompare {
     public static void main(String[] args) {
-        String oldSpec = "v1.0.json";
-        String newSpec = "v1.1.json";
-        final var swaggerDiff = SwaggerDiff.compareV2(oldSpec, newSpec);
-        String html = new HtmlRender("Changelog",
-                "http://deepoove.com/swagger-diff/stylesheets/demo.css")
-                .render(swaggerDiff);
-        try {
-            FileWriter fw = new FileWriter(
-                    "testNewApi.html");
-            fw.write(html);
-            fw.close();
-            System.out.println("Completed compare");
-            System.out.println();
-            System.out.println("file://"+ Paths.get("testNewApi.html").toAbsolutePath().toString());
-            System.out.println();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ChangedOpenApi diff = OpenApiCompare.fromLocations("/path/to/spec_v1.0.json", "/path/to/spec_v1.1.json");
+
+        String markdown = new MarkdownRender()
+                .render(diff);
+
+        System.out.println(markdown);
     }
-}
 ```
 
 ## Step 2
 
-If your service is not running currently, launch it and then make a copy of the API specification as it currently stands.
+Now let's test our OpenAPI spec diff'ing utility by creating two versions of the spec for our service with some minor changes.
+
+If your ToDo service is not running currently, launch it and then make a copy of the API specification as it currently stands.
 
 ```shell
-curl http://localhost:8080/v2/api-docs -o v1.0.json
+curl http://localhost:8080/v3/api-docs -o spec_v1.0.json
 ```
 
-Make a small refactor to the API and add a field representing the todo owner.
-This can simply be added into the Java object as an additional optional field. e.g.
+Make a small change to the API to add a field representing the Todo owner e.g.
 
 ```java
-private Integer id;
-public Integer getId() {return id;}
-public void setId(Integer id) {this.id = id;}
+public record ToDo(String todoID, String description, String owner) {
+}
 ```
 
 Restart the application and capture the specification again
 
 ```shell
-curl http://localhost:8080/v2/api-docs -o v1.1.json
+curl http://localhost:8080/v3/api-docs -o spec_v1.1.json
 ```
 
-In the directory you are working in you should now have two files
+In the directory you are working in you should now have two files:
 
-```shell
-$ ls
-v1.0.json v1.1.json
+* spec_v1.0.json
+* spec_v1.1.json
+
+We will now inspect the compatibility of these two files using the `openapi-differ` program.
+
+Make sure the paths you have specified in the `OpenApiCompare.fromLocations` method call points to the specs you have just generated then execute the program.
+
+You should see some output in the console similar to the following:
+
+```markdown
+#### What's Changed
+---
+
+##### `GET` /todos
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `*/*`
+
+    Changed items (object):
+
+    * Added property `owner` (string)
+
+##### `POST` /todos
+
+
+###### Request:
+
+Changed content type : `application/json`
+
+* Added property `owner` (string)
+
+##### `GET` /todos/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `*/*`
+
+    * Added property `owner` (string)
 ```
 
-We will now inspect the compatibility of these two files using the Swagger Diff class that we created.
+## Step 3 - Richer diff output
 
-Ensure that the variables `oldSpec` and `newSpec` is the relative path to the files that are created when running the curl request.
+We chose to output the diff using makrdown however there are various options for how the diff report can be output.
 
-To run the compare press the green play button on the class and a file path will be produced. This is the location of the swagger compare.
+See if you can write the report to a HTML file that can viewed in a browser.
 
-Here we see the green play button to run the compare
+Check out the docs for your options here: <https://github.com/OpenAPITools/openapi-diff#render-difference>
 
-![Run Swagger Compare image](runSwaggerCompare.png)
+## Step 4 - Breaking changes
 
-This next image is the output of the comparison as an HTML file. Copy and paste this into your browser to see the difference
+Lets now try and break compatibility in the API.
 
-![Swagger Compare output image](outputOfSwaggerCompare.png)
+Update the model for you `Todo` object to rename the id to be todoID e.g.
 
-## Step 3
+```java
+public record ToDo(String todoID, String description, String owner) {
+}
+```
 
-Examine the HTML file and you can see a breakdown of what has changed in between each version
+Restart the application and then run `curl http://localhost:8080/v3/api-docs -o spec_v2.0.json`.
 
-![Swagger compare HTML image](swaggerCompareHtml.png)
+Re-run your `openapi-differ` program against the new versoj of the spec and observe the output.
 
-## Step 4
-
-Lets now try and break compatibility in the API. 
-For this change rename the id to be taskID, restart the application and then run `curl http://localhost:8080/v2/api-docs -o v2.0.json`.
-
-Rerun `swagger-diff` and observe the output.
-
-![Swagger compare HTML image](swaggerCompareBreakingHtml.png)
-
-## Step 5
+## Further reading
 
 Read through the information about Major and Minor versioning on APIs in this great document by [PayPal](https://github.com/paypal/api-standards/blob/master/api-style-guide.md#api-versioning).
